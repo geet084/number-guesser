@@ -3,34 +3,43 @@
   <head>
     <title>Number Guesser</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,700">
   </head>
   <body>
+    <!-- LEFT SIDE -->
     <section class="left-side">
       <div class="empty-flex-space"></div>
       <article>
         <h1><strong>NUMBER</strong>GUESSER</h1>
-        <form action="#">
-          <div class="input-space">
+        <!-- MIN AND MAX RANGE -->
+        <form action="#" class="range-input">
+          <div class="min-range-div">
             <label for="min-range">Min Range</label>
             <input id="min-range" type="text">
+            <p><img src="images/error-icon.svg" alt="error icon">Enter a min range</p>
           </div>
-          <div class="input-space">
+          <div class="max-range-div">
             <label for="max-range">Max Range</label>
             <input id="max-range" type="text">
           </div>
-          <input id="updateButton" type="submit" value="UPDATE" class="button">
+          <div class="update-button-div">
+            <label for="update-button" class="update-button-hidden-label">.
+            </label>
+            <input type="submit" value="UPDATE" class="button update-button">
         </form>
-        <hr>
-        <p>The Current Range is <strong id="rangeBegin">1</strong> to <strong id="rangeEnd">100</strong></p>
-        <form action="#">
-          <div>
+        </div>      
+        <!-- CURRENT RANGE AND SUBMIT GUESS -->
+        <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
+        <form action="#"">
+          <div class="guess-input">
             <label for="guess">Guess</label>
             <input id="guess" type="text">
           </div>
-          <input id="updateSubmit" type="submit" value="SUBMIT GUESS" class="button">
-          <input id="clearButton" type="reset" value="CLEAR" class="button">
-          <input id="resetButton" type="reset" value="RESET" class="button"> 
+          <input type="submit" value="SUBMIT GUESS" class="button submit-button">
+          <div class="clear-reset-buttons">
+            <input type="reset" value="CLEAR" class="button clear-button">
+            <input type="reset" value="RESET" class="button reset-button"> 
+          </div>
         </form>
       </article>
       <div class="empty-flex-space"></div>
@@ -39,7 +48,7 @@
       <div class="empty-flex-space"></div>
       <article>
         <h1>You Guessed:</h1>
-        <p id="result">25</p>
+        <p class="last-guess">25</p>
         <h2>Sorry, that is too something</h2>
       </article>
       <div class="empty-flex-space"></div>
