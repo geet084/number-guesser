@@ -1,3 +1,7 @@
 # Number Guesser
-## description stuff work
+## Need to finish
+
+## Contributors
+* Jeo D
+* Travis Gee
 
