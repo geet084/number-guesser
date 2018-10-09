@@ -3,7 +3,6 @@
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 body {
@@ -28,11 +27,13 @@ section {
 
 article{
   flex: 2;
+  padding: 0 5%;
 }
 
 h1 {
   font-weight: 300;
   font-size: 3rem;
+  text-align: center;
 }
 
 .left-side h1 {
@@ -43,19 +44,28 @@ strong {
   font-weight: 700;
 }
 
-form div {
-  display: inline-block;
-}
-
 label {
   font-weight: 700;
   display: block;
   text-align: left;
 }
 
-#guess {
+input {
+  border: 1px solid #6E6E6E;
+}
+
+.current-range, hr {
+  margin: 2% auto;
+}
+
+.guess-input {
+  width: 100%;
+}
+
+input[type="text"] {
   display: block;
-  margin: auto;
+  width: 100%;
+  font-size: 1.25rem;
 }
 
 .left-side p strong {
@@ -64,13 +74,47 @@ label {
 
 input[value="SUBMIT GUESS"] {
   display: block;
-  margin: auto;
+  margin: 2% auto;
+  width: 100%;
+}
+
+.range-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.min-range-div, .max-range-div, .update-button-div {
+  flex-basis: 32%
+}
+
+.update-button-hidden-label {
+  visibility: hidden;
+}
+
+#update-button {
+  width: 100%;
+  margin-bottom: -90px;
+}
+
+.clear-reset-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clear-reset-buttons input[value="CLEAR"] {
+  flex-basis: 49%;
+}
+
+.clear-reset-buttons input[value="RESET"] {
+  flex-basis: 49%;
 }
 
 .button {
   background-color: #6E6E6E;
   color: #FFFFFF;
   font-weight: 700;
+  font-size: 1.25rem;
+  border-radius: 25px;
 }
 
 .button:disabled {
@@ -88,6 +132,7 @@ input[value="SUBMIT GUESS"] {
 /*RIGHT SIDE*/
 .right-side {
   background-color: #404041;
+  text-align: center;
 }
 
 .right-side h1 {

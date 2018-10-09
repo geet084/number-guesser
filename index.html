@@ -10,27 +10,32 @@
       <div class="empty-flex-space"></div>
       <article>
         <h1><strong>NUMBER</strong>GUESSER</h1>
-        <form action="#">
-          <div>
+        <form action="#" class="range-input">
+          <div class="min-range-div">
             <label for="min-range">Min Range</label>
             <input id="min-range" type="text">
           </div>
-          <div>
+          <div class="max-range-div">
             <label for="max-range">Max Range</label>
             <input id="max-range" type="text">
           </div>
-          <input type="submit" value="UPDATE" class="button">
+          <div class="update-button-div">
+            <label for="update-button" class="update-button-hidden-label">.</label>
+            <input id="update-button" type="submit" value="UPDATE" class="button">
+          </div>
         </form>
         <hr>
-        <p>The Current Range is <strong>1</strong> to <strong>100</strong></p>
-        <form action="#">
-          <div>
+        <p class="current-range">The Current Range is <strong>1</strong> to <strong>100</strong></p>
+        <form action="#"">
+          <div class="guess-input">
             <label for="guess">Guess</label>
             <input id="guess" type="text">
           </div>
           <input type="submit" value="SUBMIT GUESS" class="button">
-          <input type="reset" value="CLEAR" class="button">
-          <input type="reset" value="RESET" class="button"> 
+          <div class="clear-reset-buttons">
+            <input type="reset" value="CLEAR" class="button">
+            <input type="reset" value="RESET" class="button"> 
+          </div>
         </form>
       </article>
       <div class="empty-flex-space"></div>
