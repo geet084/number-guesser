@@ -10,10 +10,10 @@ body {
 }
 
 section {
-  height: 100vh;
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  height: 100vh;
 }
 
 /*LEFT SIDE*/
@@ -25,57 +25,25 @@ section {
   flex: 1;
 }
 
+/*MIN AND MAX RANGE*/
 article{
   flex: 2;
   padding: 0 5%;
 }
 
 h1 {
-  font-weight: 300;
-  font-size: 3rem;
   text-align: center;
+  font-size: 3rem;
+  font-weight: 300;
 }
 
 .left-side h1 {
   color: #DD1972;
+  margin-bottom: 5%;
 }
 
 strong {
   font-weight: 700;
-}
-
-label {
-  font-weight: 700;
-  display: block;
-  text-align: left;
-}
-
-input {
-  border: 1px solid #6E6E6E;
-}
-
-.current-range, hr {
-  margin: 2% auto;
-}
-
-.guess-input {
-  width: 100%;
-}
-
-input[type="text"] {
-  display: block;
-  width: 100%;
-  font-size: 1.25rem;
-}
-
-.left-side p strong {
-  text-decoration: underline;
-}
-
-input[value="SUBMIT GUESS"] {
-  display: block;
-  margin: 2% auto;
-  width: 100%;
 }
 
 .range-input {
@@ -87,34 +55,33 @@ input[value="SUBMIT GUESS"] {
   flex-basis: 32%
 }
 
+label {
+  display: block;
+  font-weight: 700;
+  text-align: left;
+}
+
+input[type="text"] {
+  border: 1px solid #6E6E6E;
+  display: block;
+  font-size: 1.25rem;
+  width: 100%;
+}
+
 .update-button-hidden-label {
   visibility: hidden;
 }
 
-#update-button {
+.update-button {
   width: 100%;
-  margin-bottom: -90px;
-}
-
-.clear-reset-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.clear-reset-buttons input[value="CLEAR"] {
-  flex-basis: 49%;
-}
-
-.clear-reset-buttons input[value="RESET"] {
-  flex-basis: 49%;
 }
 
 .button {
   background-color: #6E6E6E;
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 1.25rem;
   border-radius: 25px;
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .button:disabled {
@@ -126,7 +93,36 @@ input[value="SUBMIT GUESS"] {
 }
 
 .button:onclick {
-   background-color: #DD1972;
+  background-color: #DD1972;
+}
+
+
+/*CURRENT RANGE AND SUBMIT GUESS*/
+.current-range, hr {
+  margin: 2% auto;
+}
+
+.left-side p strong {
+  text-decoration: underline;
+}
+
+.guess-input {
+  width: 100%;
+}
+
+input[value="SUBMIT GUESS"] {
+  display: block;
+  margin: 2% auto;
+  width: 100%;
+}
+
+.clear-reset-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clear-reset-buttons input {
+  flex-basis: 49%;
 }
 
 /*RIGHT SIDE*/
@@ -135,18 +131,26 @@ input[value="SUBMIT GUESS"] {
   text-align: center;
 }
 
+.right-side article {
+  display: flex;
+  flex-direction: column;
+}
+
 .right-side h1 {
   color: #FFFFFF;
+  flex: 1;
 }
 
 .right-side p {
   color: #F74D9B;
-  font-weight: 700;
+  flex: 4;
   font-size: 10rem;
+  font-weight: 700;
 }
 
 .right-side h2 {
   color: #FFFFFF;
+  flex: 1;
   font-size: 2rem;
   font-weight: 300;
 }
