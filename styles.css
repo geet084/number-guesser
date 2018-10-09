@@ -1,44 +1,54 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-fieldset {
-  display: block;
-  text-align: center;
-}
-form {
-  width: 300px;
+body {
   margin: 0 auto;
-  text-align: center;
 }
-.div-center {
-  text-align: center;
+section {
+  height: 100vh;
+  display: inline-block;
+  margin: auto -2px;
+  padding: 100% auto;
 }
-.banNum {
-  display: inline;
-  color: #ED458B;
+.left-side {
+  background-color: #F7F7F7;
+  width: 50%;
 }
-.banGuess {
-  display: inline;
-  color: #E6E7E8;
-}
-#guessedVal {
-  color: #EB008B;
-}
-#pageBorder {
-  width: 600px;
-  height: 500px;
-  border: 5px solid black;
-}
-#banner {
+
+.right-side {
   background-color: #404041;
-  width: 400px;
-  width: 300px;
-  margin: 0 auto;
-  text-align: center;
+  width: 50%;
+  vertical-align: top;
 }
-#enterGuess {
-  display: inline;
-  text-align: center;
-  width: 400px;
-}
-#lastGuess {
 
+.left-side h1 {
+  color: #DD1972;
+}
+
+.button {
+  background-color: #6E6E6E;
+  color: #FFFFFF;
+}
+
+.button:disabled {
+  background-color: #D0D2D3;
+}
+
+.button:hover {
+  background-color: #DD1972;
+}
+.button:onclick {
+   background-color: #DD1972;
+}
+
+.right-side h1 {
+  color: #FFFFFF;
+}
+
+.right-side p {
+  color: #F74D9B;
 }
