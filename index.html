@@ -29,16 +29,16 @@
         </form>
         </div>      
         <!-- CURRENT RANGE AND SUBMIT GUESS -->
-        <p class="current-range">The Current Range is <strong>1</strong> to <strong>100</strong></p>
+        <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
         <form action="#"">
           <div class="guess-input">
             <label for="guess">Guess</label>
             <input id="guess" type="text">
           </div>
-          <input type="submit" value="SUBMIT GUESS" class="button">
+          <input type="submit" value="SUBMIT GUESS" class="button submit-button">
           <div class="clear-reset-buttons">
-            <input type="reset" value="CLEAR" class="button">
-            <input type="reset" value="RESET" class="button"> 
+            <input type="reset" value="CLEAR" class="button clear-button">
+            <input type="reset" value="RESET" class="button reset-button"> 
           </div>
         </form>
       </article>
@@ -48,7 +48,7 @@
       <div class="empty-flex-space"></div>
       <article>
         <h1>You Guessed:</h1>
-        <p>25</p>
+        <p class="last-guess">25</p>
         <h2>Sorry, that is too something</h2>
       </article>
       <div class="empty-flex-space"></div>
