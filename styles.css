@@ -16,6 +16,9 @@ section {
   display: flex;
   flex-direction: column;
 }
+input {
+  border: 1px solid #6E6E6E;
+}
 
 /*LEFT SIDE*/
 .left-side {
@@ -65,12 +68,22 @@ label {
 input[value="SUBMIT GUESS"] {
   display: block;
   margin: auto;
+  width: 300px;
 }
+
+.input-space {
+  width: 32%;
+}
+input[value="UPDATE"] {
+  width: 32%;
+}
+
 
 .button {
   background-color: #6E6E6E;
   color: #FFFFFF;
   font-weight: 700;
+  border-radius: 25px;
 }
 
 .button:disabled {

@@ -11,26 +11,26 @@
       <article>
         <h1><strong>NUMBER</strong>GUESSER</h1>
         <form action="#">
-          <div>
+          <div class="input-space">
             <label for="min-range">Min Range</label>
             <input id="min-range" type="text">
           </div>
-          <div>
+          <div class="input-space">
             <label for="max-range">Max Range</label>
             <input id="max-range" type="text">
           </div>
-          <input type="submit" value="UPDATE" class="button">
+          <input id="updateButton" type="submit" value="UPDATE" class="button">
         </form>
         <hr>
-        <p>The Current Range is <strong>1</strong> to <strong>100</strong></p>
+        <p>The Current Range is <strong id="rangeBegin">1</strong> to <strong id="rangeEnd">100</strong></p>
         <form action="#">
           <div>
             <label for="guess">Guess</label>
             <input id="guess" type="text">
           </div>
-          <input type="submit" value="SUBMIT GUESS" class="button">
-          <input type="reset" value="CLEAR" class="button">
-          <input type="reset" value="RESET" class="button"> 
+          <input id="updateSubmit" type="submit" value="SUBMIT GUESS" class="button">
+          <input id="clearButton" type="reset" value="CLEAR" class="button">
+          <input id="resetButton" type="reset" value="RESET" class="button"> 
         </form>
       </article>
       <div class="empty-flex-space"></div>
@@ -39,7 +39,7 @@
       <div class="empty-flex-space"></div>
       <article>
         <h1>You Guessed:</h1>
-        <p>25</p>
+        <p id="result">25</p>
         <h2>Sorry, that is too something</h2>
       </article>
       <div class="empty-flex-space"></div>
