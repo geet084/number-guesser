@@ -3,35 +3,74 @@
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 body {
-  margin: 0 auto;
-}
-section {
-  height: 100vh;
-  display: inline-block;
-  margin: auto -2px;
-  padding: 100% auto;
-}
-.left-side {
-  background-color: #F7F7F7;
-  width: 50%;
+  display: flex;
 }
 
-.right-side {
-  background-color: #404041;
-  width: 50%;
-  vertical-align: top;
+section {
+  height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/*LEFT SIDE*/
+.left-side {
+  background-color: #F7F7F7;
+}
+
+.empty-flex-space {
+  flex: 1;
+}
+
+article{
+  flex: 2;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 3rem;
 }
 
 .left-side h1 {
   color: #DD1972;
 }
 
+strong {
+  font-weight: 700;
+}
+
+form div {
+  display: inline-block;
+}
+
+label {
+  font-weight: 700;
+  display: block;
+  text-align: left;
+}
+
+#guess {
+  display: block;
+  margin: auto;
+}
+
+.left-side p strong {
+  text-decoration: underline;
+}
+
+input[value="SUBMIT GUESS"] {
+  display: block;
+  margin: auto;
+}
+
 .button {
   background-color: #6E6E6E;
   color: #FFFFFF;
+  font-weight: 700;
 }
 
 .button:disabled {
@@ -41,8 +80,14 @@ section {
 .button:hover {
   background-color: #DD1972;
 }
+
 .button:onclick {
    background-color: #DD1972;
+}
+
+/*RIGHT SIDE*/
+.right-side {
+  background-color: #404041;
 }
 
 .right-side h1 {
@@ -51,4 +96,12 @@ section {
 
 .right-side p {
   color: #F74D9B;
+  font-weight: 700;
+  font-size: 10rem;
+}
+
+.right-side h2 {
+  color: #FFFFFF;
+  font-size: 2rem;
+  font-weight: 300;
 }
