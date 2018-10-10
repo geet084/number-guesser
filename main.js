@@ -69,9 +69,9 @@ function guessCounter() {
 
 function validateInteger(userNum) {
   if (isNaN(userNum)) {
-    alert('Please enter integers only');
+    throwError('.error-message-min', 'Enter positive integers only');
   } else if (!(rangeBegin <= userNum && userNum <= rangeEnd)) {
-    alert('Please enter integers within the range');
+    throwError('.error-message-min', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
   } else {
     document.querySelector('.last-guess').innerText = userNum;
     checkGuess(userNum);
@@ -87,9 +87,9 @@ function validateInteger(userNum) {
 
 function rangeValidation() {
   if (isNaN(rangeDifference)) {
-    alert('Please enter integers only');
+    throwError('.error-message-min', 'Enter a positive integer');
   } else if (rangeBegin > rangeEnd) {
-    alert('Please ensure Min Range is less than Max Range')
+    throwError('.error-message-min', `Min Range must be less than ${rangeEnd}`);
   } else {
     document.querySelector('.range-begin').innerText = document.querySelector('#min-range').value;
     document.querySelector('.range-end').innerText = document.querySelector('#max-range').value;
@@ -122,4 +122,10 @@ function changeButton(button) {
    button.disabled = true;
    button.classList.remove("hover");
  }
+}
+
+function throwError(field, message) {
+  document.querySelector(field).classList.remove('hidden');
+  // document.querySelector('.error-icon').classList.remove('hidden');
+  document.querySelector(field).innerText = message;
 }
