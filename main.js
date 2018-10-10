@@ -21,6 +21,7 @@ updateClick.addEventListener("click", function( ) {
   rangeDifference = rangeEnd - rangeBegin;
   rangeValidation(rangeDifference);
   resetButton.disabled = false;
+  resetButton.classList.add('hover');
 });
 
 submitClick.addEventListener("click", function( ) {
@@ -44,9 +45,13 @@ function initializeForm() {
   rangeBegin = 1;
   rangeEnd = 100;
   numGuessTries = 0;
+  document.querySelector('h4').innerText = "Number of wrong guesses: " + numGuessTries;
   rangeDifference = rangeEnd - rangeBegin;
   clearButton.disabled = true;
   resetButton.disabled = true;
+  clearButton.classList.remove('hover');
+  resetButton.classList.remove('hover');
+
   document.querySelector('.range-begin').innerText = 1;
   document.querySelector('.range-end').innerText = 100;
   document.querySelector('.last-guess').innerText = "";
@@ -58,7 +63,7 @@ function initializeForm() {
 
 function generateRandom() {
   var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
-  // document.querySelector('.winning-number').innerText = randomNumber;
+  document.querySelector('.winning-number').innerText = randomNumber;
   return randomNumber;
 }
 function guessCounter() {
@@ -77,6 +82,10 @@ function validateInteger(userNum) {
     document.querySelector('.right-side h1').innerText = "You Guessed:"
     clearButton.disabled = false;
     resetButton.disabled = false;
+    clearButton.classList.add('hover');
+    resetButton.classList.add('hover');
+
+
   }
 }
 
@@ -95,6 +104,8 @@ function rangeValidation() {
 function clearInput() {
   document.querySelector('#guess').value = null;
   clearButton.disabled = true;
+  clearButton.classList.remove('hover');
+
 };
 
 function checkGuess(userGuess) {
@@ -104,5 +115,15 @@ function checkGuess(userGuess) {
     document.querySelector('h2').innerText = "Sorry, that is too high";
   } else if (userGuess < winningNumber) {
     document.querySelector('h2').innerText = "Sorry, that is too low";
+  }
+}
+
+function changeButton (button) {
+  if (button.disabled == true && !button.classList.contains('hover')) {
+    button.disabled == false;
+    button.classList.add('hover');
+  } else if (button.disabled == false && button.classList.contains('hover')) {
+    button.disabled == true;
+    button.classList.remove  ('hover');
   }
 }
