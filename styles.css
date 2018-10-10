@@ -176,12 +176,9 @@ input[value="SUBMIT GUESS"] {
   font-weight: 700;
 }
 
-.right-side h2, h4 {
+.right-side h2 {
   color: #FFFFFF;
   flex: 1;
   font-size: 2rem;
   font-weight: 300;
-}
-h4 {
-  font-size: 1rem;
 }
