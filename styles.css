@@ -76,14 +76,14 @@ label {
   text-align: left;
 }
 
-input[type="text"] {
+input[type="number"] {
   border: 1px solid #6E6E6E;
   display: block;
   font-size: 1.25rem;
   width: 100%;
 }
 
-input[type="text"]:focus {
+input[type="number"]:focus {
   border-color: #DD1972;
   outline: none;
 }
@@ -131,8 +131,9 @@ input[type="text"]:focus {
   width: 100%;
 }
 
-.guess-input input[type="text"] {
+.guess-input input[type="number"] {
   font-size: 1.5rem;
+  width: 100%;
 }
 
 input[value="SUBMIT GUESS"] {
