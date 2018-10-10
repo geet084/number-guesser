@@ -53,6 +53,7 @@ strong {
 .range-input {
   border-bottom: 2px solid #D0D2D3;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding-bottom: 2%;
 }
@@ -68,7 +69,6 @@ strong {
 
 img {
   height: .8rem;
-  margin-right: 5%;
 }
 
 label {
@@ -89,8 +89,12 @@ input[type="number"]:focus {
   outline: none;
 }
 
-.update-button-hidden-label {
+.hidden {
   visibility: hidden;
+}
+
+.error-message-min {
+  display: inline-block;
 }
 
 .update-button {

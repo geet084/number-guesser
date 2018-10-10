@@ -16,18 +16,21 @@
         <div class="min-range-div">
           <label for="min-range">Min Range</label>
           <input id="min-range" type="number" required>
-          <p><img class="error-icon" src="images/error-icon.svg" alt="error icon">Enter a min range</p>
         </div>
         <div class="max-range-div">
           <label for="max-range">Max Range</label>
           <input id="max-range" type="number" required>
         </div>
         <div class="update-button-div">
-          <label for="update-button" class="update-button-hidden-label">.
+          <label for="update-button" class="hidden">.
           </label>
           <input type="submit" value="UPDATE" class="button update-button hover">
+        </div>
+        <div class="error-message-min">
+          <img class="error-icon" src="images/error-icon.svg" alt="error icon">
+          <p class="error-message-min">error message here</p>
+        </div>
         </form>
-      </div>      
       <!-- CURRENT RANGE AND SUBMIT GUESS -->
       <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
       <form action="#"">
