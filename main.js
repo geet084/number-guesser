@@ -5,36 +5,33 @@ var winningNumber = generateRandom();
 var clearButton = document.querySelector('.clear-button');
 var resetButton = document.querySelector('.reset-button');
 var submitButton = document.querySelector('.submit-button');
-
-var updateClick = document.querySelector('.update-button');
-var submitClick = document.querySelector('.submit-button');
-var clearClick = document.querySelector('.clear-button');
-var resetClick = document.querySelector('.reset-button');
+var updateButton = document.querySelector('.update-button');
 var guessedNum = 0;
 var numGuessTries = 0;
 
 initializeForm();
 
-updateClick.addEventListener("click", function( ) {
+updateButton.addEventListener("click", function( ) {
   rangeBegin = parseInt(document.querySelector('#min-range').value);
   rangeEnd = parseInt(document.querySelector('#max-range').value);
   rangeDifference = rangeEnd - rangeBegin;
   rangeValidation(rangeDifference);
-  resetButton.disabled = false;
-  resetButton.classList.add('hover');
+  if (resetButton.disabled == true) {
+    changeButton(resetButton);
+  }
 });
 
-submitClick.addEventListener("click", function( ) {
+submitButton.addEventListener("click", function( ) {
   guessedNum = document.querySelector('#guess').value;
   validateInteger(guessedNum);
   guessCounter();
 });
 
-clearClick.addEventListener("click", function ( ) {
+clearButton.addEventListener("click", function ( ) {
   clearInput();
 });
 
-resetClick.addEventListener("click", function ( ) {
+resetButton.addEventListener("click", function ( ) {
   clearInput();
   initializeForm();
   winningNumber = generateRandom();
@@ -51,7 +48,6 @@ function initializeForm() {
   resetButton.disabled = true;
   clearButton.classList.remove('hover');
   resetButton.classList.remove('hover');
-
   document.querySelector('.range-begin').innerText = 1;
   document.querySelector('.range-end').innerText = 100;
   document.querySelector('.last-guess').innerText = "";
@@ -80,13 +76,12 @@ function validateInteger(userNum) {
     document.querySelector('.last-guess').innerText = userNum;
     checkGuess(userNum);
     document.querySelector('.right-side h1').innerText = "You Guessed:"
-    clearButton.disabled = false;
-    resetButton.disabled = false;
-    clearButton.classList.add('hover');
-    resetButton.classList.add('hover');
-
-
-  }
+    if (clearButton.disabled == true) {
+      changeButton(clearButton);
+    }
+    if (resetButton.disabled == true) {
+      changeButton(resetButton);
+    }
 }
 
 function rangeValidation() {
@@ -103,9 +98,9 @@ function rangeValidation() {
 
 function clearInput() {
   document.querySelector('#guess').value = null;
-  clearButton.disabled = true;
-  clearButton.classList.remove('hover');
-
+  if (clearButton.disabled == false) {
+    changeButton(clearButton);
+  }
 };
 
 function checkGuess(userGuess) {
@@ -119,11 +114,11 @@ function checkGuess(userGuess) {
 }
 
 function changeButton (button) {
-  if (button.disabled == true && !button.classList.contains('hover')) {
-    button.disabled == false;
+  if (button.disabled == true) {
+    button.disabled = false;
     button.classList.add('hover');
-  } else if (button.disabled == false && button.classList.contains('hover')) {
-    button.disabled == true;
-    button.classList.remove  ('hover');
+  } else if (button.disabled == false) {
+    button.disabled = true;
+    button.classList.remove('hover');
   }
 }
