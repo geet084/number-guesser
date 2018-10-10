@@ -45,7 +45,7 @@ function initializeForm() {
   rangeBegin = 1;
   rangeEnd = 100;
   numGuessTries = 0;
-  document.querySelector('h4').innerText = "Number of wrong guesses: " + numGuessTries;
+  document.querySelector('h4').innerText = "";
   rangeDifference = rangeEnd - rangeBegin;
   clearButton.disabled = true;
   resetButton.disabled = true;
