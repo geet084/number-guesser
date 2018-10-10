@@ -15,12 +15,12 @@
         <form action="#" class="range-input">
           <div class="min-range-div">
             <label for="min-range">Min Range</label>
-            <input id="min-range" type="text">
-            <p><img src="images/error-icon.svg" alt="error icon">Enter a min range</p>
+            <input id="min-range" type="number" required>
+            <p><img class="error-icon" src="images/error-icon.svg" alt="error icon">Enter a min range</p>
           </div>
           <div class="max-range-div">
             <label for="max-range">Max Range</label>
-            <input id="max-range" type="text">
+            <input id="max-range" type="number" required>
           </div>
           <div class="update-button-div">
             <label for="update-button" class="update-button-hidden-label">.
@@ -33,7 +33,7 @@
         <form action="#"">
           <div class="guess-input">
             <label for="guess">Guess</label>
-            <input id="guess" type="text">
+            <input id="guess" type="number" required>
           </div>
           <input type="submit" value="SUBMIT GUESS" class="button submit-button">
           <div class="clear-reset-buttons">
