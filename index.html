@@ -7,61 +7,71 @@
 </head>
 <body>
   <!-- LEFT SIDE -->
-  <section class="left-side">
-    <div class="empty-flex-space"></div>
-    <article>
-      <h1><strong>NUMBER</strong>GUESSER</h1>
-      <!-- MIN AND MAX RANGE -->
-      <form action="#" class="range-input">
-        <div class="min-range-div">
-          <label for="min-range">Min Range</label>
-          <input id="min-range" type="number" required>
-        </div>
-        <div class="max-range-div">
-          <label for="max-range">Max Range</label>
-          <input id="max-range" type="number" required>
-        </div>
-        <div class="update-button-div">
-          <label for="update-button" class="hidden">.
-          </label>
-          <input type="submit" value="UPDATE" class="button update-button hover">
-        </div>
-        <div class="error-message-range hidden">
-          <img class="error-icon" src="images/error-icon.svg" alt="error icon">
-          <p>error message here</p>
-        </div>
-        </form>
-      <!-- CURRENT RANGE AND SUBMIT GUESS -->
-      <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
-      <form action="#"">
-        <div class="guess-input">
-          <label for="guess">Guess</label>
-          <span class="error-message-guess hidden">
+  <header>
+    <h1><strong>NUMBER</strong>GUESSER</h1>
+  </header>
+  <main>
+    <section class="left-side">
+      <article>
+        
+        <!-- MIN AND MAX RANGE -->
+        <form action="#" class="range-input white-box">
+          <div class="min-range-div">
+            <label for="min-range">Min Range</label>
+            <input id="min-range" type="number" required>
+          </div>
+          <div class="max-range-div">
+            <label for="max-range">Max Range</label>
+            <input id="max-range" type="number" required>
+          </div>
+          <div class="update-button-div">
+            <label for="update-button" class="hidden">.
+            </label>
+            <input type="submit" value="UPDATE" class="button update-button hover">
+          </div>
+          <div class="error-message-range hidden">
             <img class="error-icon" src="images/error-icon.svg" alt="error icon">
             <p>error message here</p>
-          </span>
-          <input id="guess" type="number" required>
+          </div>
+        </form>
+        <!-- CURRENT RANGE AND SUBMIT GUESS -->
+        <form action="#"" class="guess-input white-box">
+          <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
+          <div>
+            <label for="guess">Guess</label>
+            <span class="error-message-guess hidden">
+              <img class="error-icon" src="images/error-icon.svg" alt="error icon">
+              <p>error message here</p>
+            </span>
+            <input id="guess" type="number" required>
+          </div>
+          <input type="submit" value="SUBMIT GUESS" class="button submit-button hover">
+          <div class="clear-reset-buttons">
+            <input type="reset" value="CLEAR" class="button clear-button hover">
+            <input type="reset" value="RESET" class="button reset-button hover"> 
+          </div>
+        </form>
+        <div class="latest-score">
+          <div class="white-box challenger">
+            <p>Challenger 1 Name</p>
+            <p class="last-guess"></p>
+            <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
+            <!-- <h4>Number of wrong guesses: <span class="tries"></span></h4> -->
+          </div>
+          <div class="white-box challenger">
+            <p>Challenger 2 Name</p>
+            <p class="last-guess"></p>
+            <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
+            <!-- <h4>Number of wrong guesses: <span class="tries"></span></h4> -->
+          </div>
         </div>
-        <input type="submit" value="SUBMIT GUESS" class="button submit-button hover">
-        <div class="clear-reset-buttons">
-          <input type="reset" value="CLEAR" class="button clear-button hover">
-          <input type="reset" value="RESET" class="button reset-button hover"> 
-        </div>
-      </form>
-    </article>
-    <div class="empty-flex-space"></div>
-  </section>
-  <section class="right-side">
-    <div class="empty-flex-space"></div>
-    <article>
-      <h1>Make a Guess</h1>
-      <p class="last-guess"></p>
-      <h2></h2>
-      <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
-      <h4>Number of wrong guesses: <span class="tries"></span></h4>
-    </article>
-    <div class="empty-flex-space"></div>
-  </section>
+      </article>
+    </section>
+    <section class="right-side">
+      <div class="empty-flex-space"></div>
+      <div class="empty-flex-space"></div>
+    </section>
+  </main>
   <script src="main.js" type="text/javascript"></script>
 </body>
 </html>
