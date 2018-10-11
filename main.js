@@ -9,10 +9,14 @@ var updateButton = document.querySelector('.update-button');
 var guessedNum = 0;
 var numGuessTries = 0;
 
+/*  Event Listeners  */
+
 updateButton.addEventListener("click", setRange);
 submitButton.addEventListener("click", getGuessValue);
 clearButton.addEventListener("click", clearInput);
 resetButton.addEventListener("click", initializeForm);
+
+/*  Functions  */
 
 initializeForm();
 
