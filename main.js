@@ -16,8 +16,6 @@ submitButton.addEventListener("click", getGuessValue);
 clearButton.addEventListener("click", clearInput);
 resetButton.addEventListener("click", initializeForm);
 
-/*  Functions  */
-
 initializeForm();
 
 function initializeForm() {
