@@ -29,12 +29,12 @@ function initializeForm() {
   resetButton.disabled = true;
   clearButton.classList.remove('hover');
   resetButton.classList.remove('hover');
-  document.querySelector('h4').innerText = "";
+  // document.querySelector('h4').innerText = "";
   document.querySelector('.range-begin').innerText = 1;
   document.querySelector('.range-end').innerText = 100;
   document.querySelector('.last-guess').innerText = "";
-  document.querySelector('h2').innerText = "";
-  document.querySelector('.right-side h1').innerText = "Make a Guess";
+  // document.querySelector('h2').innerText = "";
+  // document.querySelector('.right-side h1').innerText = "Make a Guess";
   hideError('.error-message-range');
   hideError('.error-message-guess');
 }
@@ -49,7 +49,7 @@ function getGuessValue () {
   guessedNum = document.querySelector('#guess').value;
 
   validateInteger(guessedNum);
-  guessCounter();
+  // guessCounter();
 }
 
 function guessCounter() {
