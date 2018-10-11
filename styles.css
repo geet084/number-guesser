@@ -206,14 +206,18 @@ input[value="SUBMIT GUESS"] {
 
 /*LATEST SCORE*/
 .latest-score {
+  flex: 2;
+}
+
+.challenger-container {
   display: flex;
   flex-direction: row;
-  flex: 2;
   justify-content: space-between;
 }
 
 .challenger {
   /*flex: 1;*/
+  text-align: center;
   flex-basis: 49%;
 }
 
