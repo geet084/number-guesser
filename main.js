@@ -58,7 +58,7 @@ function guessCounter() {
 
 function validateInteger(userNum) {
   if (!Number.isInteger(parseFloat(userNum))) {
-    throwError('.error-message-guess', 'Enter integers only');
+    throwError('.error-message-guess', 'Enter an integer');
   } else if (!(rangeBegin <= userNum && userNum <= rangeEnd)) {
     throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
   } else {
@@ -76,16 +76,16 @@ function validateInteger(userNum) {
 }
 
 function findRange() {
-  rangeBegin = parseInt(document.querySelector('#min-range').value);
-  rangeEnd = parseInt(document.querySelector('#max-range').value);
+  rangeBegin = parseFloat(document.querySelector('#min-range').value);
+  rangeEnd = parseFloat(document.querySelector('#max-range').value);
   rangeDifference = rangeEnd - rangeBegin;
 }
 
 function validateRange() {
-  if (!Number.isInteger(rangeDifference)) {
-    throwError('.error-message-range', 'Enter a positive integer');
+  if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
+    throwError('.error-message-range', 'Enter integers');
   } else if (rangeBegin > rangeEnd) {
-    throwError('.error-message-range', `Max Range must be greater than ${rangeBegin}`);
+    throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
   } else {
     hideError('.error-message-range');
     document.querySelector('.range-begin').innerText = document.querySelector('#min-range').value;
