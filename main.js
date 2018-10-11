@@ -41,7 +41,7 @@ function initializeForm() {
 
 function generateRandom() {
   var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
-  document.querySelector('.winning-number').innerText = randomNumber;
+  // document.querySelector('.winning-number').innerText = randomNumber;
   return randomNumber;
 }
 
