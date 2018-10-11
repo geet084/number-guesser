@@ -35,6 +35,8 @@ function initializeForm() {
   document.querySelector('.last-guess').innerText = "";
   document.querySelector('h2').innerText = "";
   document.querySelector('.right-side h1').innerText = "Make a Guess";
+  hideError('.error-message-range');
+  hideError('.error-message-guess');
 }
 
 function generateRandom() {
