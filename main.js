@@ -47,6 +47,7 @@ function generateRandom() {
 
 function getGuessValue () {
   guessedNum = document.querySelector('#guess').value;
+
   validateInteger(guessedNum);
   guessCounter();
 }
@@ -63,6 +64,8 @@ function validateInteger(userNum) {
     throwError('.error-message-guess', 'Enter an integer');
   } else if (!(rangeBegin <= userNum && userNum <= rangeEnd)) {
     throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
+  } else if (checkIfZero(document.querySelector('#guess').value)) {
+    throwError('.error-message-guess', 'Remove unneccesary zeros');
   } else {
     hideError('.error-message-guess');
     checkGuess(userNum);
@@ -86,13 +89,29 @@ function findRange() {
 function validateRange() {
   if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
     throwError('.error-message-range', 'Enter integers');
+    changeButton(submitButton);
   } else if (rangeBegin > rangeEnd) {
     throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
+    changeButton(submitButton);
+  } else if (checkIfZero(document.querySelector('#min-range').value) || checkIfZero(document.querySelector('#max-range').value)) {
+    throwError('.error-message-range', 'Remove unneccesary zeros');
+    changeButton(submitButton);
   } else {
     hideError('.error-message-range');
+    if (submitButton.disabled == true) {
+      changeButton(submitButton);
+    }
     document.querySelector('.range-begin').innerText = document.querySelector('#min-range').value;
     document.querySelector('.range-end').innerText = document.querySelector('#max-range').value;
     winningNumber = generateRandom();
+  }
+}
+
+function checkIfZero(inputValue) {
+  if (inputValue[0] === '0' && inputValue.length > 1) {
+    return true;
+  } else {
+    return false;
   }
 }
 
