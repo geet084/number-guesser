@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   outline: 0;
+  box-shadow: 0 0;
 }
 
 body {
@@ -67,7 +68,7 @@ strong {
   margin-top: 2%;
 }
 
-img {
+.error-icon {
   height: .8rem;
 }
 
@@ -93,7 +94,7 @@ input[type="number"]:focus {
   visibility: hidden;
 }
 
-.error-message-min {
+.error-message-range p {
   display: inline-block;
 }
 
@@ -134,6 +135,18 @@ input[type="number"]:focus {
 
 .guess-input {
   width: 100%;
+}
+
+.guess-input label {
+  display: inline;
+}
+
+.error-message-guess {
+  float: right;
+}
+
+.error-message-guess p {
+  display: inline-block;
 }
 
 .guess-input input[type="number"] {

@@ -34,7 +34,9 @@ function initializeForm() {
   document.querySelector('.range-end').innerText = 100;
   document.querySelector('.last-guess').innerText = "";
   document.querySelector('h2').innerText = "";
-  document.querySelector('.right-side h1').innerText = "Make a guess";
+  document.querySelector('.right-side h1').innerText = "Make a Guess";
+  hideError('.error-message-range');
+  hideError('.error-message-guess');
 }
 
 function generateRandom() {
@@ -50,18 +52,21 @@ function getGuessValue () {
 }
 
 function guessCounter() {
-  numGuessTries += 1;
-  document.querySelector('h4').innerText = "Number of wrong guesses: " + numGuessTries;
+  if (document.querySelector('.error-message-guess').classList.contains('hidden')) {
+    numGuessTries += 1;
+    document.querySelector('h4').innerText = "Number of Guesses: " + numGuessTries;
+  }
 }
 
 function validateInteger(userNum) {
-  if (isNaN(userNum)) {
-    throwError('.error-message-min', 'Enter positive integers only');
+  if (!Number.isInteger(parseFloat(userNum))) {
+    throwError('.error-message-guess', 'Enter an integer');
   } else if (!(rangeBegin <= userNum && userNum <= rangeEnd)) {
-    throwError('.error-message-min', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
+    throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
   } else {
-    document.querySelector('.last-guess').innerText = userNum;
+    hideError('.error-message-guess');
     checkGuess(userNum);
+    document.querySelector('.last-guess').innerText = userNum;
     document.querySelector('.right-side h1').innerText = "You Guessed:"
   }
   if (clearButton.disabled == true) {
@@ -73,17 +78,18 @@ function validateInteger(userNum) {
 }
 
 function findRange() {
-  rangeBegin = parseInt(document.querySelector('#min-range').value);
-  rangeEnd = parseInt(document.querySelector('#max-range').value);
+  rangeBegin = parseFloat(document.querySelector('#min-range').value);
+  rangeEnd = parseFloat(document.querySelector('#max-range').value);
   rangeDifference = rangeEnd - rangeBegin;
 }
 
 function validateRange() {
-  if (isNaN(rangeDifference)) {
-    throwError('.error-message-min', 'Enter a positive integer');
+  if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
+    throwError('.error-message-range', 'Enter integers');
   } else if (rangeBegin > rangeEnd) {
-    throwError('.error-message-min', `Min Range must be less than ${rangeEnd}`);
+    throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
   } else {
+    hideError('.error-message-range');
     document.querySelector('.range-begin').innerText = document.querySelector('#min-range').value;
     document.querySelector('.range-end').innerText = document.querySelector('#max-range').value;
     winningNumber = generateRandom();
@@ -129,7 +135,13 @@ function changeButton(button) {
 }
 
 function throwError(field, message) {
+  var pTagSelector = field + ' p';
   document.querySelector(field).classList.remove('hidden');
-// document.querySelector('.error-icon').classList.remove('hidden');
-document.querySelector(field).innerText = message;
+  document.querySelector(pTagSelector).innerText = message;
+}
+
+function hideError(field) {
+  if (!document.querySelector(field).classList.contains('hidden')) {
+      document.querySelector(field).classList.add('hidden');
+  }
 }

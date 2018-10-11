@@ -26,9 +26,9 @@
           </label>
           <input type="submit" value="UPDATE" class="button update-button hover">
         </div>
-        <div class="error-message-min">
+        <div class="error-message-range hidden">
           <img class="error-icon" src="images/error-icon.svg" alt="error icon">
-          <p class="error-message-min">error message here</p>
+          <p>error message here</p>
         </div>
         </form>
       <!-- CURRENT RANGE AND SUBMIT GUESS -->
@@ -36,6 +36,10 @@
       <form action="#"">
         <div class="guess-input">
           <label for="guess">Guess</label>
+          <span class="error-message-guess hidden">
+            <img class="error-icon" src="images/error-icon.svg" alt="error icon">
+            <p>error message here</p>
+          </span>
           <input id="guess" type="number" required>
         </div>
         <input type="submit" value="SUBMIT GUESS" class="button submit-button hover">
