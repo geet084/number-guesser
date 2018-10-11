@@ -9,33 +9,12 @@ var updateButton = document.querySelector('.update-button');
 var guessedNum = 0;
 var numGuessTries = 0;
 
+updateButton.addEventListener("click", setRange);
+submitButton.addEventListener("click", getGuessValue);
+clearButton.addEventListener("click", clearInput);
+resetButton.addEventListener("click", initializeForm);
+
 initializeForm();
-
-updateButton.addEventListener("click", function( ) {
-  rangeBegin = parseInt(document.querySelector('#min-range').value);
-  rangeEnd = parseInt(document.querySelector('#max-range').value);
-  rangeDifference = rangeEnd - rangeBegin;
-  rangeValidation(rangeDifference);
-  if (resetButton.disabled == true) {
-   changeButton(resetButton);
- }
-});
-
-submitButton.addEventListener("click", function( ) {
-  guessedNum = document.querySelector('#guess').value;
-  validateInteger(guessedNum);
-  guessCounter();
-});
-
-clearButton.addEventListener("click", function ( ) {
-  clearInput();
-});
-
-resetButton.addEventListener("click", function ( ) {
-  clearInput();
-  initializeForm();
-  winningNumber = generateRandom();
-});
 
 function initializeForm() {
   clearInput();
@@ -43,6 +22,7 @@ function initializeForm() {
   rangeEnd = 100;
   numGuessTries = 0;
   rangeDifference = rangeEnd - rangeBegin;
+  winningNumber = generateRandom();
   clearButton.disabled = true;
   resetButton.disabled = true;
   clearButton.classList.remove('hover');
@@ -53,8 +33,6 @@ function initializeForm() {
   document.querySelector('.last-guess').innerText = "";
   document.querySelector('h2').innerText = "";
   document.querySelector('.right-side h1').innerText = "Make a guess";
-  document.querySelector('#min-range').value = null;
-  document.querySelector('#max-range').value = null;
 }
 
 function generateRandom() {
@@ -62,6 +40,13 @@ function generateRandom() {
   document.querySelector('.winning-number').innerText = randomNumber;
   return randomNumber;
 }
+
+function getGuessValue () {
+  guessedNum = document.querySelector('#guess').value;
+  validateInteger(guessedNum);
+  guessCounter();
+}
+
 function guessCounter() {
   numGuessTries += 1;
   document.querySelector('h4').innerText = "Number of wrong guesses: " + numGuessTries;
@@ -78,14 +63,20 @@ function validateInteger(userNum) {
     document.querySelector('.right-side h1').innerText = "You Guessed:"
   }
   if (clearButton.disabled == true) {
-   changeButton(clearButton);
- }
- if (resetButton.disabled == true) {
-   changeButton(resetButton);
- }
+    changeButton(clearButton);
+  }
+  if (resetButton.disabled == true) {
+    changeButton(resetButton);
+  }
 }
 
-function rangeValidation() {
+function findRange() {
+  rangeBegin = parseInt(document.querySelector('#min-range').value);
+  rangeEnd = parseInt(document.querySelector('#max-range').value);
+  rangeDifference = rangeEnd - rangeBegin;
+}
+
+function validateRange() {
   if (isNaN(rangeDifference)) {
     throwError('.error-message-min', 'Enter a positive integer');
   } else if (rangeBegin > rangeEnd) {
@@ -97,11 +88,22 @@ function rangeValidation() {
   }
 }
 
+function setRange() {  
+  findRange();
+  validateRange(rangeDifference);
+  if (resetButton.disabled == true) {
+    changeButton(resetButton);
+  }
+  if (clearButton.disabled == true) {
+    changeButton(clearButton);
+  }
+}
+
 function clearInput() {
   document.querySelector('#guess').value = null;
-  if (clearButton.disabled == false) {
-   changeButton(clearButton);
- }
+  document.querySelector('#min-range').value = null;
+  document.querySelector('#max-range').value = null;
+  changeButton(clearButton);
 };
 
 function checkGuess(userGuess) {
@@ -115,17 +117,17 @@ function checkGuess(userGuess) {
 }
 
 function changeButton(button) {
- if (button.disabled == true) {
-   button.disabled = false;
-   button.classList.add("hover");
- } else if (button.disabled == false) {
-   button.disabled = true;
-   button.classList.remove("hover");
- }
+  if (button.disabled == true) {
+    button.disabled = false;
+    button.classList.add("hover");
+  } else if (button.disabled == false) {
+    button.disabled = true;
+    button.classList.remove("hover");
+  }
 }
 
 function throwError(field, message) {
   document.querySelector(field).classList.remove('hidden');
-  // document.querySelector('.error-icon').classList.remove('hidden');
-  document.querySelector(field).innerText = message;
+// document.querySelector('.error-icon').classList.remove('hidden');
+document.querySelector(field).innerText = message;
 }
