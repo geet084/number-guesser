@@ -34,7 +34,7 @@ function initializeForm() {
   document.querySelector('.range-end').innerText = 100;
   document.querySelector('.last-guess').innerText = "";
   document.querySelector('h2').innerText = "";
-  document.querySelector('.right-side h1').innerText = "Make a guess";
+  document.querySelector('.right-side h1').innerText = "Make a Guess";
 }
 
 function generateRandom() {
@@ -50,18 +50,21 @@ function getGuessValue () {
 }
 
 function guessCounter() {
-  numGuessTries += 1;
-  document.querySelector('h4').innerText = "Number of wrong guesses: " + numGuessTries;
+  if (document.querySelector('.error-message-guess').classList.contains('hidden')) {
+    numGuessTries += 1;
+    document.querySelector('h4').innerText = "Number of Guesses: " + numGuessTries;
+  }
 }
 
 function validateInteger(userNum) {
-  if (isNaN(userNum)) {
-    throwError('.error-message-min', 'Enter positive integers only');
+  if (!Number.isInteger(parseFloat(userNum))) {
+    throwError('.error-message-guess', 'Enter integers only');
   } else if (!(rangeBegin <= userNum && userNum <= rangeEnd)) {
-    throwError('.error-message-min', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
+    throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
   } else {
-    document.querySelector('.last-guess').innerText = userNum;
+    hideError('.error-message-guess');
     checkGuess(userNum);
+    document.querySelector('.last-guess').innerText = userNum;
     document.querySelector('.right-side h1').innerText = "You Guessed:"
   }
   if (clearButton.disabled == true) {
@@ -79,11 +82,12 @@ function findRange() {
 }
 
 function validateRange() {
-  if (isNaN(rangeDifference)) {
-    throwError('.error-message-min', 'Enter a positive integer');
+  if (!Number.isInteger(rangeDifference)) {
+    throwError('.error-message-range', 'Enter a positive integer');
   } else if (rangeBegin > rangeEnd) {
-    throwError('.error-message-min', `Min Range must be less than ${rangeEnd}`);
+    throwError('.error-message-range', `Max Range must be greater than ${rangeBegin}`);
   } else {
+    hideError('.error-message-range');
     document.querySelector('.range-begin').innerText = document.querySelector('#min-range').value;
     document.querySelector('.range-end').innerText = document.querySelector('#max-range').value;
     winningNumber = generateRandom();
@@ -129,7 +133,13 @@ function changeButton(button) {
 }
 
 function throwError(field, message) {
+  var pTagSelector = field + ' p';
   document.querySelector(field).classList.remove('hidden');
-// document.querySelector('.error-icon').classList.remove('hidden');
-document.querySelector(field).innerText = message;
+  document.querySelector(pTagSelector).innerText = message;
+}
+
+function hideError(field) {
+  if (!document.querySelector(field).classList.contains('hidden')) {
+      document.querySelector(field).classList.add('hidden');
+  }
 }
