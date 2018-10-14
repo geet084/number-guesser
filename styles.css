@@ -197,34 +197,92 @@ input[value="SUBMIT GUESS"] {
 
 
 /*RIGHT SIDE*/
+
+.bold-text {
+  font-weight: 1000;
+}
+
 .right-side {
   background-color: #D1D2D4;
   text-align: center;
-}
-
-.right-side article {
+  font-size: 1rem;
   display: flex;
-  flex-direction: column;
 }
 
+.card {
+  display: flex;
+  flex: 3;
+  justify-content: space-between;
+  padding: 5px;
+  
+}
+
+.top-card {
+  /*to hold round info*/
+
+}
+
+.mid-card {
+  /*to hold round info*/
+
+}
+
+.btm-card {
+  /*to hold round info*/
+
+}
+
+.extra-space {
+  flex: 1;
+}
+
+.delete-icon img {
+  width: 25px;
+  margin-bottom: -7px;
+  margin-left: 40px;
+}
+
+.right-side p {
+  color: #6E6E6E;  
+}
+
+.user-winner p {
+  font-size: 2rem;
+}
+
+.user-name-area {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 5px 40px;
+}
+
+.result-bottom {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 5px 10px;
+}
+
+/*
 .right-side h1 {
   color: #FFFFFF;
   flex: 1;
 }
-
-.right-side p {
+*/
+/*.right-side p {
   color: #F74D9B;
   flex: 4;
   font-size: 10rem;
   font-weight: 700;
-}
+}*/
 
-.right-side h2, h4 {
+/*.right-side h2, h4 {
   color: #FFFFFF;
   flex: 1;
   font-size: 2rem;
   font-weight: 300;
-}
-h4 {
+}*/
+/*h4 {
   font-size: 1rem;
-}
+}*/
