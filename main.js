@@ -127,7 +127,7 @@ function setRange() {
 }
 
 function clearInput() {
-  document.querySelector('#guess').value = null;
+  // document.querySelector('#guess').value = null;
   document.querySelector('#min-range').value = null;
   document.querySelector('#max-range').value = null;
   changeButton(clearButton);

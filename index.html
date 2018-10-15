@@ -9,69 +9,188 @@
   <!-- LEFT SIDE -->
   <header>
     <h1><strong>NUMBER</strong>GUESSER</h1>
+    <p class="subheader">
+      <span class="horizontal-line"></span>
+      ULTIMATE CHALLENGER EDITION
+      <span class="horizontal-line"></span>
+    </p>
   </header>
   <main>
     <section class="left-side">
       <article>
-        
         <!-- MIN AND MAX RANGE -->
-        <form action="#" class="range-input white-box">
-          <div class="min-range-div">
-            <label for="min-range">Min Range</label>
-            <input id="min-range" type="number" required>
+        <div class="white-box">
+          <p><strong class="card-title">Set Range</strong></p>
+          <form action="#" class="range-input">
+            <div class="min-range-div">
+              <label for="min-range">Min Range</label>
+              <input id="min-range" type="number" required>
+            </div>
+            <div class="max-range-div">
+              <label for="max-range">Max Range</label>
+              <input id="max-range" type="number" required>
+            </div>
+            <div class="update-button-div">
+              <label for="update-button" class="hidden">.
+              </label>
+              <input type="submit" value="UPDATE" class="button update-button hover">
+            </div>
+            <div class="error-message-range hidden">
+              <img class="error-icon" src="images/error-icon.svg" alt="error icon">
+              <p>error message here</p>
+            </div>
+          </form>
+        </div>
+        <!-- CURRENT RANGE AND SUBMIT GUESS -->
+        <form action="#"" class="guess-input white-box middle-container">
+          <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
+          <p class="middle-card-title"><strong class="card-title">Challenger 1</strong></p>
+          <div class="name-and-guess">
+            <span class="name-container">
+              <label for="challenger-1-name">Name</label>
+              <input id="challenger-1-name" type="text" required>
+            </span>
+            <span class="guess-container">
+              <label for="guess1">Guess</label>
+              <input id="guess1" type="number" required>
+            </span>
           </div>
-          <div class="max-range-div">
-            <label for="max-range">Max Range</label>
-            <input id="max-range" type="number" required>
-          </div>
-          <div class="update-button-div">
-            <label for="update-button" class="hidden">.
-            </label>
-            <input type="submit" value="UPDATE" class="button update-button hover">
-          </div>
-          <div class="error-message-range hidden">
+          <div class="error-message-guess hidden">
             <img class="error-icon" src="images/error-icon.svg" alt="error icon">
             <p>error message here</p>
           </div>
-        </form>
-        <!-- CURRENT RANGE AND SUBMIT GUESS -->
-        <form action="#"" class="guess-input white-box">
-          <p class="current-range">The Current Range is <strong class="range-begin">1</strong> to <strong class="range-end">100</strong></p>
-          <div>
-            <label for="guess">Guess</label>
-            <span class="error-message-guess hidden">
-              <img class="error-icon" src="images/error-icon.svg" alt="error icon">
-              <p>error message here</p>
+          <p class="middle-card-title"><strong class="card-title">Challenger 2</strong></p>
+          <div class="name-and-guess">
+            <span class="name-container">
+              <label for="challenger-2-name">Name</label>
+              <input id="challenger-2-name" type="text" required>
             </span>
-            <input id="guess" type="number" required>
+            <span class="guess-container">
+              <label for="guess2">Guess</label>
+              <input id="guess2" type="number" required>
+            </span>
           </div>
-          <input type="submit" value="SUBMIT GUESS" class="button submit-button hover">
-          <div class="clear-reset-buttons">
-            <input type="reset" value="CLEAR" class="button clear-button hover">
-            <input type="reset" value="RESET" class="button reset-button hover"> 
+          <div class="error-message-guess hidden">
+            <img class="error-icon" src="images/error-icon.svg" alt="error icon">
+            <p>error message here</p>
+          </div>
+          <div class="submit-clear-reset-buttons">
+            <input type="submit" value="SUBMIT GUESS" class="button submit-button hover">
+            <input type="reset" value="RESET GAME" class="button reset-button hover"> 
+            <input type="reset" value="CLEAR GAME" class="button clear-button hover">
           </div>
         </form>
-        <div class="latest-score">
-          <div class="white-box challenger">
-            <p>Challenger 1 Name</p>
-            <p class="last-guess"></p>
-            <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
-            <!-- <h4>Number of wrong guesses: <span class="tries"></span></h4> -->
-          </div>
-          <div class="white-box challenger">
-            <p>Challenger 2 Name</p>
-            <p class="last-guess"></p>
-            <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
-            <!-- <h4>Number of wrong guesses: <span class="tries"></span></h4> -->
+        <div class="white-box latest-score">
+          <p><strong class="card-title">Latest Score</strong></p>
+          <div class="challenger-container">
+            <div class="challenger">
+              <p><strong>Challenger 1 Name</strong></p>
+              <p>current guess</p>
+              <p class="last-guess">97</p>
+              <p>that's too high</p>
+              <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
+              <!-- <h4>Number of wrong guesses: <span class="tries"></span></h4> -->
+            </div>
+            <div class="challenger">
+              <p><strong>Challenger 2 Name</strong></p>
+              <p>current guess</p>
+              <p class="last-guess">3</p>
+              <p>that's too low</p>
+              <!-- <h3>The correct guess is <span class="winning-number"></span></h3> -->
+              <!-- <h4>Number of wrong guesses: <span class="tries"></span></h4> -->
+            </div>
           </div>
         </div>
       </article>
     </section>
     <section class="right-side">
-      <div class="empty-flex-space"></div>
-      <div class="empty-flex-space"></div>
+      <article class="white-box card top-card">
+        <div class="user-name-area">
+          <div>
+            <p class="user1 bold-text">CHALLENGER 1 NAME</p>
+          </div>
+          <div>
+            <p>  VS  </p>
+          </div>
+          <div>
+            <p class="user2 bold-text">CHALLENGER 2 NAME</p>
+          </div>
+        </div>
+        <div class="user-winner">
+          <p class="bold-text">CHALLENGER winner NAME</p>
+          <p>WINNER</p>
+        </div>
+        <div class="result-bottom">
+          <div class="win-guesses">
+            <p><span class="bold-text">#</span> GUESSES</p>
+          </div>
+          <div class="win-elapsed-time">
+            <p><span class="bold-text">TIME</span> MINUTES</p>
+          </div>
+          <div class="delete-icon">
+            <p><img src="delete.svg" alt=""></p>  
+          </div>
+        </div>
+      </article>
+      <article class="white-box card mid-card">
+        <div class="user-name-area">
+          <div>
+            <p class="user1 bold-text">CHALLENGER 1 NAME</p>
+          </div>
+          <div>
+            <p>  VS  </p>
+          </div>
+          <div>
+            <p class="user2 bold-text">CHALLENGER 2 NAME</p>
+          </div>
+        </div>
+        <div class="user-winner">
+          <p class="bold-text">CHALLENGER winner NAME</p>
+          <p>WINNER</p>
+        </div>
+        <div class="result-bottom">
+          <div class="win-guesses">
+            <p><span class="bold-text">#</span> GUESSES</p>
+          </div>
+          <div class="win-elapsed-time">
+            <p><span class="bold-text">TIME</span> MINUTES</p>
+          </div>
+          <div class="delete-icon">
+            <p><img src="delete.svg" alt=""></p>  
+          </div>
+        </div>
+      </article>
+      <article class="white-box card btm-card">
+        <div class="user-name-area">
+          <div>
+            <p class="user1 bold-text">CHALLENGER 1 NAME</p>
+          </div>
+          <div>
+            <p>  VS  </p>
+          </div>
+          <div>
+            <p class="user2 bold-text">CHALLENGER 2 NAME</p>
+          </div>
+        </div>
+        <div class="user-winner">
+          <p class="bold-text">CHALLENGER winner NAME</p>
+          <p>WINNER</p>
+        </div>
+        <div class="result-bottom">
+          <div class="win-guesses">
+            <p><span class="bold-text">#</span> GUESSES</p>
+          </div>
+          <div class="win-elapsed-time">
+            <p><span class="bold-text">TIME</span> MINUTES</p>
+          </div>
+          <div class="delete-icon">
+            <p><img src="delete.svg" alt=""></p>  
+          </div>
+        </div>
+      </article> 
+      <article><span class="extra-space"></span></article>
     </section>
   </main>
-  <script src="main.js" type="text/javascript"></script>
+  <!-- <script src="main.js" type="text/javascript"></script> -->
 </body>
 </html>
