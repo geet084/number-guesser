@@ -1,0 +1,499 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"last",
+				"last-guess"
+			],
+			[
+				"gu",
+				"guessedNum"
+			],
+			[
+				"clearU",
+				"clearInput"
+			],
+			[
+				"ini",
+				"initMax"
+			],
+			[
+				"clear",
+				"clearButton"
+			],
+			[
+				"sub",
+				"submitClick"
+			],
+			[
+				"inner",
+				"innerText"
+			],
+			[
+				"coln",
+				"column-area"
+			],
+			[
+				"colu",
+				"column-area"
+			],
+			[
+				"col",
+				"column-articles"
+			],
+			[
+				"colum",
+				"column-articles"
+			],
+			[
+				"inlin",
+				"inline-block\tdisplay"
+			],
+			[
+				"margin",
+				"margin-bottom\tproperty"
+			],
+			[
+				"pos",
+				"position\tproperty"
+			],
+			[
+				"ar",
+				"article-text"
+			],
+			[
+				"padding",
+				"padding-top\tproperty"
+			],
+			[
+				"he",
+				"height\tproperty"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"arti",
+				"article-group"
+			],
+			[
+				"backg",
+				"background\tproperty"
+			],
+			[
+				"inli",
+				"inline-block\tdisplay"
+			],
+			[
+				"min",
+				"min-width\tproperty"
+			],
+			[
+				"texta",
+				"text-align\tproperty"
+			],
+			[
+				"in",
+				"inline-block\tdisplay"
+			],
+			[
+				"row",
+				"rowTwo"
+			],
+			[
+				"tes",
+				"text-decoration-style\tproperty"
+			],
+			[
+				"marg",
+				"margin-bottom\tproperty"
+			],
+			[
+				"magin",
+				"margin-top\tproperty"
+			],
+			[
+				"banner",
+				"banner-links"
+			],
+			[
+				"bann",
+				"banner-links"
+			],
+			[
+				"bord",
+				"border-radius\tproperty"
+			],
+			[
+				"text",
+				"text-center"
+			],
+			[
+				"div",
+				"div-center"
+			],
+			[
+				"max",
+				"max-width\tproperty"
+			],
+			[
+				"al",
+				"alignRight"
+			],
+			[
+				"colFontTw",
+				"colFontTwo"
+			],
+			[
+				"b",
+				"bold\tfont"
+			],
+			[
+				"colfon",
+				"colFontOne"
+			],
+			[
+				"list",
+				"listBG"
+			],
+			[
+				"nav",
+				"navLink"
+			],
+			[
+				"na",
+				"navLink"
+			],
+			[
+				"bordc",
+				"border-color\tproperty"
+			],
+			[
+				"bo",
+				"bolder\tfont-weight"
+			],
+			[
+				"fontsi",
+				"font-size-adjust\tproperty"
+			],
+			[
+				"font",
+				"fontBold"
+			],
+			[
+				"selec",
+				"selectedIndex"
+			],
+			[
+				"w",
+				"when\t$.when()"
+			],
+			[
+				"des",
+				"destinationInput"
+			],
+			[
+				"forms",
+				"formAnswer"
+			],
+			[
+				"grou",
+				"groupType"
+			],
+			[
+				"ans",
+				"ansForm"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"form",
+				"formAnswer"
+			],
+			[
+				"head",
+				"headLink"
+			],
+			[
+				"paddin",
+				"padding-bottom\tproperty"
+			],
+			[
+				"ali",
+				"text-align\tproperty"
+			],
+			[
+				"tex",
+				"text-top\tvertical-align"
+			],
+			[
+				"blo",
+				"inline-block\tdisplay"
+			],
+			[
+				"fon",
+				"font-weight\tproperty"
+			],
+			[
+				"link",
+				"linkBG"
+			],
+			[
+				"page",
+				"pageLinkOne"
+			],
+			[
+				"li",
+				"linkOne"
+			],
+			[
+				"temp",
+				"tempSpot"
+			],
+			[
+				"docu",
+				"Documents"
+			],
+			[
+				"get",
+				"getElementsById"
+			],
+			[
+				"bw",
+				"border-width\tproperty"
+			],
+			[
+				"bsr",
+				"bds-r\tborder-style: ridge;"
+			],
+			[
+				"for",
+				"formBoxButtonBG"
+			],
+			[
+				"tal",
+				"ta-l\ttext-align: left;"
+			],
+			[
+				"gr",
+				"grid_12"
+			],
+			[
+				"st",
+				"style"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"snippet h",
+				"Snippet: html"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 136.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/tgee/Turing/Mod1/number-guesser/styles.css",
+		"/Users/tgee/Turing/Mod1/number-guesser/main.js",
+		"/Users/tgee/Turing/Mod1/number-guesser/index.html",
+		"/Users/tgee/Turing/Mod1/dog-party/styles.css",
+		"/Users/tgee/Turing/Mod1/dog-party/index.html",
+		"/Users/tgee/Turing/Mod1/dog-party/README.md",
+		"/Users/tgee/Turing/Example Project/index.html",
+		"/Users/tgee/Turing/Example Project/css/styles.css",
+		"/Users/tgee/Documents/Example Project/index.html",
+		"/Users/tgee/Turing/Mod1/Dog Party/styles.css",
+		"/Users/tgee/Turing/Mod1/Dog Party/index.html",
+		"/Users/tgee/Documents/main.js",
+		"/Users/tgee/Documents/Example Project/js/main.js",
+		"/Users/tgee/Documents/Online_Examples",
+		"/Users/tgee/Documents/Example Project/css/styles.css",
+		"/Users/tgee/Documents/Example Project/css/960_12_col.css",
+		"/Users/tgee/Documents/Example Project/html/pagetwo.html",
+		"/Users/tgee/Documents/Example Project/html/pagethree.html",
+		"/Users/tgee/Documents/Example Project/html/pagefour.html",
+		"/Users/tgee/Documents/Example Project/html/pagefive.html",
+		"/Users/tgee/Documents/Example Project/Example Project/css/styles.css",
+		"/Users/tgee/Documents/styles.css",
+		"/Users/tgee/Documents/index.html",
+		"/Users/tgee/Documents/example.sublime-project",
+		"/Users/tgee/Documents/example.sublime-workspace",
+		"/Users/tgee/Documents/style.css"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 28.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 50.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

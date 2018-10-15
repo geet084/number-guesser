@@ -19,6 +19,7 @@ resetButton.addEventListener("click", initializeForm);
 initializeForm();
 
 function initializeForm() {
+  updateWinCard();
   clearInput();
   rangeBegin = 1;
   rangeEnd = 100;
@@ -163,4 +164,23 @@ function hideError(field) {
   if (!document.querySelector(field).classList.contains('hidden')) {
       document.querySelector(field).classList.add('hidden');
   }
+}
+
+/* change all of doc.query to function called SELECT*/ 
+/* add prevent default, should be for whole page? */ 
+
+
+function addWinCard () {
+  document.querySelector('.user-1-name').innerText = "sponge bob";
+  document.querySelector('.user-2-name').innerText = "leroy";
+  document.querySelector('.user-winner').innerText = "someone";
+  document.querySelector('.win-guesses').innerText = numGuessTries;
+  document.querySelector('.win-elapsed-time').innerText = getElapsedTime;
+}
+
+function getElapsedTime () {
+  var start = new Date();
+  var elapsed = new Date() - start;
+  /* return ((elapsed / 1000) / 60).toFixed(1);  */ 
+
 }
