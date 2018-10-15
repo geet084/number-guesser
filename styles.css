@@ -207,6 +207,7 @@ input[value="SUBMIT GUESS"] {
   text-align: center;
   font-size: 1rem;
   display: flex;
+  padding-top: 10px;
 }
 
 .card {
@@ -214,7 +215,9 @@ input[value="SUBMIT GUESS"] {
   flex: 3;
   justify-content: space-between;
   padding: 5px;
-  
+  color: #7f7f7f;
+  border: 2px solid #ababab;
+  margin: .75% 5%;
 }
 
 .top-card {
@@ -236,14 +239,14 @@ input[value="SUBMIT GUESS"] {
   flex: 1;
 }
 
+.versus {
+  font-size: smaller;
+}
+
 .delete-icon img {
   width: 25px;
   margin-bottom: -7px;
   margin-left: 40px;
-}
-
-.right-side p {
-  color: #6E6E6E;  
 }
 
 .user-winner p {
@@ -255,6 +258,7 @@ input[value="SUBMIT GUESS"] {
   flex-wrap: nowrap;
   justify-content: space-between;
   margin: 5px 40px;
+  color: #727278;
 }
 
 .result-bottom {
