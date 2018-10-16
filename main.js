@@ -8,9 +8,10 @@ var submitButton = select('.submit-button');
 var updateButton = select('.update-button');
 var user1Guess = 0;
 var user2Guess = 0;
-var numGuessTries = 0;
+var guessCount = 0;
 var newGame = true;
 var gameStartTime = 0;
+var remove = select('.right-side');
 
 /*  Event Listeners  */
 
@@ -18,6 +19,7 @@ updateButton.addEventListener("click", setRange);
 submitButton.addEventListener("click", setGuesses);
 clearButton.addEventListener("click", clearGuesses);
 resetButton.addEventListener("click", initializeForm);
+remove.addEventListener("click", removeCard);
 
 window.onload = initializeForm();
 
@@ -27,32 +29,43 @@ function select(field) {
 }
 
 function addWinCard() {
-  select('.user1').innerText = select('#challenger-1-name').value;
-  select('.user2').innerText = select('#challenger-2-name').value;
-  select('.user-winner').innerText = "someone";
-  select('.win-guesses').innerText = numGuessTries;
-  // select('.win-elapsed-time').innerText = getElapsedTime;
-}
-
-function checkRange0s() {
-  if (extra0(select('#min-range').value) || extra0(select('#max-range').value)) {
-    throwError('.error-message-range', 'Remove unneccesary zeros');
-    return true;
-  } 
-}
-
-function checkSmallMax() {
-  if (rangeBegin > rangeEnd) {
-    throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
-    return true;
+  for (var i = 1; i < 3; i++) {
+    if (select(`.guess-feedback-${i}`).innerText === "BOOM!" ) {
+      var winnerName = select(`.name-${i}`).innerText.toUpperCase();
+    }
   }
-}
-
-function checkRangeFloat() {
-  if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
-    throwError('.error-message-range', 'Enter integers');
-    return true;
-  } 
+  var elem = document.createElement('div');
+  elem.innerHTML = `
+  <article class="white-box card top-card">
+        <div class="user-name-area">
+          <div>
+            <p class="user1 bold-text">${select('.name-1').innerText}</p>
+          </div>
+          <div class="versus">
+            <p>  VS  </p>
+          </div>
+          <div>
+            <p class="user2 bold-text">${select('.name-2').innerText}</p>
+          </div>
+        </div>
+        <div class="user-winner">
+          <p class="bold-text">${winnerName}</p>
+          <p>WINNER</p>
+        </div>
+        <div class="result-bottom">
+          <div class="win-guesses">
+            <p><span class="bold-text">${guessCount}</span> GUESSES</p>
+          </div>
+          <div class="win-elapsed-time">
+            <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
+          </div>
+          <div class="delete-icon">
+            <p><img src="delete.svg" target="delete button" class="delete-button"></p>  
+          </div>
+        </div>
+      </article>`
+  select('.right-side').prepend(elem)
+  guessCount = 0;
 }
 
 function checkGuess(userGuess, player) {
@@ -63,16 +76,6 @@ function checkGuess(userGuess, player) {
   } else if (userGuess < winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "that is too low";
   }
-}
-
-function winGameIncreaseRange() {
-  rangeBegin -= 10;
-  rangeEnd += 10;
-  clearGuesses();
-  rangeDifference += 20;
-  winningNumber = generateRandom();
-  select('.range-begin').innerText = rangeBegin;
-  select('.range-end').innerText = rangeEnd;
 }
 
 function checkGuessFloat(guess, i) {
@@ -89,19 +92,23 @@ function checkOutOfRange(guess, i) {
   } 
 }
 
-function changeButton(button) {
-  if (button.disabled == true) {
-    button.disabled = false;
-    button.classList.add("hover");
-  } else if (button.disabled == false) {
-    button.disabled = true;
-    button.classList.remove("hover");
+function checkRangeFloat() {
+  if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
+    throwError('.error-message-range', 'Enter integers');
+    return true;
+  } 
+}
+
+function checkSmallMax() {
+  if (rangeBegin > rangeEnd) {
+    throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
+    return true;
   }
 }
 
 function clearGuesses() {
   resetInputField(['#guess1', '#guess2']);
-  changeButton(clearButton);
+  disableButton(clearButton);
 }
 
 function disableButton(button) {
@@ -114,33 +121,22 @@ function enableButton(button) {
   button.classList.add("hover");
 }
 
-function getRange() {
-  rangeBegin = parseFloat(select('#min-range').value);
-  rangeEnd = parseFloat(select('#max-range').value);
-  rangeDifference = rangeEnd - rangeBegin;
-}
-
 function generateRandom() {
   var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
   return randomNumber;
 }
 
-
 function getElapsedTime () {
+  newGame = true;
   var gameStopTime = new Date().getTime() / 1000;
   var rawSeconds = parseInt(gameStopTime - gameStartTime);
-  var truncatedMinutes = parseInt(rawSeconds / 60);
-  var remainderSeconds = rawSeconds % 60;
-  newGame = true;
-  console.log(`${truncatedMinutes} Minute(s) and ${remainderSeconds} Second(s)`)
-  /* return ((elapsed / 1000) / 60).toFixed(1);  */ 
+  return (rawSeconds / 60).toFixed(2);
 }
 
-function guessCounter() {
-  if (select('.error-message-guess').classList.contains('hidden')) {
-    numGuessTries += 1;
-    select('h4').innerText = "Number of Guesses: " + numGuessTries;
-  }
+function getRange() {
+  rangeBegin = parseFloat(select('#min-range').value);
+  rangeEnd = parseFloat(select('#max-range').value);
+  rangeDifference = rangeEnd - rangeBegin;
 }
 
 function hideError(field) {
@@ -158,6 +154,13 @@ function initializeForm() {
   resetTheButtons();
 }
 
+function removeCard(selectedCard) {
+  if(event.target.tagName === 'IMG') { 
+    var deletedCard = select('.card');
+    deletedCard.remove();
+  }
+}
+
 function resetDisplay() {
   select('.range-begin').innerText = 1;
   select('.range-end').innerText = 100;
@@ -169,20 +172,20 @@ function resetDisplay() {
   hideError('.error-message-guess-2');
 }
 
-function resetTheButtons() {
-  disableButton(resetButton);
-  disableButton(clearButton);
-}
-
 function resetInputField(fields) {
   fields.forEach(function(element) {
     select(element).value = null;
   });
 }
 
+function resetTheButtons() {
+  disableButton(resetButton);
+  disableButton(clearButton);
+}
+
 function setDefaultGameValues() {
   newGame = true;
-  numGuessTries = 0;
+  guessCount = 0;
   rangeBegin = 1;
   rangeEnd = 100;
   rangeDifference = rangeEnd - rangeBegin;
@@ -196,8 +199,6 @@ function setGuesses (event) {
   var user1Name = select('#challenger-1-name').value;
   var user2Name = select('#challenger-2-name').value;
   validateGuess([user1Guess, user2Guess], [user1Name, user2Name]);
-
-// guessCounter();
 }
 
 function setRange(event) {
@@ -206,6 +207,13 @@ function setRange(event) {
   validateRange();
   enableButton(resetButton);
   enableButton(clearButton);
+}
+
+function setStartTime() {
+  if (newGame) {
+    gameStartTime = new Date().getTime() / 1000;
+    newGame = false;
+  }
 }
 
 function throwError(field, message) {
@@ -231,19 +239,12 @@ function validateGuess(guesses, names) {
       enableButton(resetButton);
       setStartTime();
     }
+    guessCount += 1;
   }
-  if(select('.guess-feedback-1').innerText == "BOOM!" || select('.guess-feedback-2').innerText == "BOOM!") {
-    getElapsedTime();
+  if(select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
     addWinCard();
     winGameIncreaseRange();
     alert('BOOM, the difficulty has increased!');
-  }
-}
-
-function setStartTime() {
-  if (newGame) {
-    gameStartTime = new Date().getTime() / 1000;
-    newGame = false;
   }
 }
 
@@ -257,4 +258,14 @@ function validateRange () {
     select('.range-end').innerText = rangeEnd;
     winningNumber = generateRandom();
   }
+}
+
+function winGameIncreaseRange() {
+  rangeBegin -= 10;
+  rangeEnd += 10;
+  clearGuesses();
+  rangeDifference += 20;
+  winningNumber = generateRandom();
+  select('.range-begin').innerText = rangeBegin;
+  select('.range-end').innerText = rangeEnd;
 }
