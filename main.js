@@ -9,6 +9,8 @@ var updateButton = select('.update-button');
 var user1Guess = 0;
 var user2Guess = 0;
 var numGuessTries = 0;
+var newGame = true;
+var gameStartTime = 0;
 
 /*  Event Listeners  */
 
@@ -125,8 +127,12 @@ function generateRandom() {
 
 
 function getElapsedTime () {
-  var start = new Date();
-  var elapsed = new Date() - start;
+  var gameStopTime = new Date().getTime() / 1000;
+  var rawSeconds = parseInt(gameStopTime - gameStartTime);
+  var truncatedMinutes = parseInt(rawSeconds / 60);
+  var remainderSeconds = rawSeconds % 60;
+  newGame = true;
+  console.log(`${truncatedMinutes} Minute(s) and ${remainderSeconds} Second(s)`)
   /* return ((elapsed / 1000) / 60).toFixed(1);  */ 
 }
 
@@ -175,6 +181,7 @@ function resetInputField(fields) {
 }
 
 function setDefaultGameValues() {
+  newGame = true;
   numGuessTries = 0;
   rangeBegin = 1;
   rangeEnd = 100;
@@ -189,6 +196,7 @@ function setGuesses (event) {
   var user1Name = select('#challenger-1-name').value;
   var user2Name = select('#challenger-2-name').value;
   validateGuess([user1Guess, user2Guess], [user1Name, user2Name]);
+
 // guessCounter();
 }
 
@@ -221,12 +229,21 @@ function validateGuess(guesses, names) {
       checkGuess(guesses[i], i);
       enableButton(clearButton);
       enableButton(resetButton);
+      setStartTime();
     }
   }
   if(select('.guess-feedback-1').innerText == "BOOM!" || select('.guess-feedback-2').innerText == "BOOM!") {
+    getElapsedTime();
     addWinCard();
     winGameIncreaseRange();
     alert('BOOM, the difficulty has increased!');
+  }
+}
+
+function setStartTime() {
+  if (newGame) {
+    gameStartTime = new Date().getTime() / 1000;
+    newGame = false;
   }
 }
 
