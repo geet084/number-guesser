@@ -56,12 +56,21 @@ function checkRangeFloat() {
 function checkGuess(userGuess, player) {
   if (userGuess == winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "BOOM!";
-    addWinCard();
   } else if (userGuess > winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "that is too high";
   } else if (userGuess < winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "that is too low";
   }
+}
+
+function winGameIncreaseRange() {
+  rangeBegin -= 10;
+  rangeEnd += 10;
+  clearGuesses();
+  rangeDifference += 20;
+  winningNumber = generateRandom();
+  select('.range-begin').innerText = rangeBegin;
+  select('.range-end').innerText = rangeEnd;
 }
 
 function checkGuessFloat(guess, i) {
@@ -111,8 +120,7 @@ function getRange() {
 
 function generateRandom() {
   var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
-// select('.winning-number').innerText = randomNumber;
-return randomNumber;
+  return randomNumber;
 }
 
 
@@ -214,6 +222,11 @@ function validateGuess(guesses, names) {
       enableButton(clearButton);
       enableButton(resetButton);
     }
+  }
+  if(select('.guess-feedback-1').innerText == "BOOM!" || select('.guess-feedback-2').innerText == "BOOM!") {
+    addWinCard();
+    winGameIncreaseRange();
+    alert('BOOM, the difficulty has increased!');
   }
 }
 
