@@ -301,25 +301,6 @@ input[type="number"]:focus, input[type="text"]:focus {
   margin: .75% 5%;
 }
 
-.top-card {
-  /*to hold round info*/
-
-}
-
-.mid-card {
-  /*to hold round info*/
-
-}
-
-.btm-card {
-  /*to hold round info*/
-
-}
-
-.extra-space {
-  flex: 1;
-}
-
 .versus {
   font-size: smaller;
 }
