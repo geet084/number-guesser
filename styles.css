@@ -348,26 +348,3 @@ input[type="number"]:focus, input[type="text"]:focus {
   justify-content: space-between;
   margin: 5px 10px;
 }
-
-/*
-.right-side h1 {
-  color: #FFFFFF;
-  flex: 1;
-}
-*/
-/*.right-side p {
-  color: #F74D9B;
-  flex: 4;
-  font-size: 10rem;
-  font-weight: 700;
-}*/
-
-/*.right-side h2, h4 {
-  color: #FFFFFF;
-  flex: 1;
-  font-size: 2rem;
-  font-weight: 300;
-}*/
-/*h4 {
-  font-size: 1rem;
-}*/

@@ -14,10 +14,13 @@ var numGuessTries = 0;
 
 updateButton.addEventListener("click", setRange);
 submitButton.addEventListener("click", setGuesses);
-clearButton.addEventListener("click", clearInput);
+clearButton.addEventListener("click", clearGuesses);
 resetButton.addEventListener("click", initializeForm);
 
-initializeForm();
+window.onload = initializeForm();
+
+// initializeForm();
+/*initialize on page load*/
 
 
 
@@ -25,22 +28,15 @@ initializeForm();
 /* add prevent default, should be for whole page? */ 
 
 
-// function addWinCard () {
-//   select('.user-1-name').innerText = "sponge bob";
-//   select('.user-2-name').innerText = "leroy";
-//   select('.user-winner').innerText = "someone";
-//   select('.win-guesses').innerText = numGuessTries;
-//   select('.win-elapsed-time').innerText = getElapsedTime;
-// }
 
+function addWinCard() {
+  select('.user1').innerText = select('#challenger-1-name').value;
+  select('.user2').innerText = select('#challenger-2-name').value;
+  select('.user-winner').innerText = "someone";
+  select('.win-guesses').innerText = numGuessTries;
+  // select('.win-elapsed-time').innerText = getElapsedTime;
+}
 
-function clearInput() {
-  select('#guess1').value = null;
-  select('#guess2').value = null;
-  select('#min-range').value = null;
-  select('#max-range').value = null;
-  disableButton(clearButton);
-};
 
 
 // function extra0(inputValue) {
@@ -52,12 +48,13 @@ function clearInput() {
 // }
 
 
-// function checkRange0s() {
-//   if (extra0(select('#min-range').value) || extra0(select('#max-range').value)) {
-//     throwError('.error-message-range', 'Remove unneccesary zeros');
-//     return true;
-//   } 
-// }
+
+function checkRange0s() {
+  if (extra0(select('#min-range').value) || extra0(select('#max-range').value)) {
+    throwError('.error-message-range', 'Remove unneccesary zeros');
+    return true;
+  } 
+}
 
 
 function checkSmallMax() {
@@ -66,6 +63,7 @@ function checkSmallMax() {
     return true;
   }
 }
+
 
 function checkRangeFloat() {
   if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
@@ -77,6 +75,7 @@ function checkRangeFloat() {
 function checkGuess(userGuess, player) {
   if (userGuess == winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "BOOM!";
+    addWinCard();
   } else if (userGuess > winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "that is too high";
   } else if (userGuess < winningNumber) {
@@ -100,16 +99,29 @@ function getRange() {
   rangeDifference = rangeEnd - rangeBegin;
 }
 
-function initializeForm() {
-  // addWinCard();
-  clearInput();
-  // setRange();
+function clearGuesses() {
+  resetInputField(['#guess1', '#guess2']);
+  changeButton(clearButton);
+}
+
+function resetInputField(fields) {
+  fields.forEach(function(element) {
+    select(element).value = null;
+  });
+}
+
+function setDefaultGameValues() {
   numGuessTries = 0;
+  rangeBegin = 1;
+  rangeEnd = 100;
   rangeDifference = rangeEnd - rangeBegin;
   winningNumber = generateRandom();
-  resetTheButtons();
+}
+
+function resetDisplay() {
   select('.range-begin').innerText = 1;
   select('.range-end').innerText = 100;
+  resetInputField(['#min-range', '#max-range']);
   select('.user-1-last-guess').innerText = "";
   select('.user-2-last-guess').innerText = "";
   hideError('.error-message-range');
@@ -117,11 +129,21 @@ function initializeForm() {
   hideError('.error-message-guess-2');
 }
 
+function initializeForm() {
+  resetInputField(['#challenger-1-name', '#challenger-2-name']);
+  resetInputField(['#min-range', '#max-range']);
+  clearGuesses();
+  setDefaultGameValues();
+  resetDisplay();
+  resetTheButtons();
+}
+
 function generateRandom() {
   var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
 // select('.winning-number').innerText = randomNumber;
 return randomNumber;
 }
+
 
 function setGuesses (event) {
   event.preventDefault();
@@ -138,7 +160,6 @@ function getElapsedTime () {
   var start = new Date();
   var elapsed = new Date() - start;
   /* return ((elapsed / 1000) / 60).toFixed(1);  */ 
-
 }
 
 function guessCounter() {
