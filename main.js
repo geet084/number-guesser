@@ -13,7 +13,7 @@ var numGuessTries = 0;
 /*  Event Listeners  */
 
 updateButton.addEventListener("click", setRange);
-submitButton.addEventListener("click", getGuessValues);
+submitButton.addEventListener("click", setGuesses);
 clearButton.addEventListener("click", clearInput);
 resetButton.addEventListener("click", initializeForm);
 
@@ -39,50 +39,48 @@ function clearInput() {
   select('#guess2').value = null;
   select('#min-range').value = null;
   select('#max-range').value = null;
-  changeButton(clearButton);
+  disableButton(clearButton);
 };
 
 
-function checkIfZero(inputValue) {
-  if (inputValue[0] === '0' && inputValue.length > 1) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// function extra0(inputValue) {
+//   if (inputValue[0] === '0' && inputValue.length > 1) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 
-function checkForExtraZeros() {
-  if (checkIfZero(select('#min-range').value) || checkIfZero(select('#max-range').value)) {
-    throwError('.error-message-range', 'Remove unneccesary zeros');
-    return true;
-  } 
-}
+// function checkRange0s() {
+//   if (extra0(select('#min-range').value) || extra0(select('#max-range').value)) {
+//     throwError('.error-message-range', 'Remove unneccesary zeros');
+//     return true;
+//   } 
+// }
 
 
-function checkIfOutOfRange() {
+function checkSmallMax() {
   if (rangeBegin > rangeEnd) {
     throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
     return true;
   }
 }
 
-
-function checkIfDecimal() {
+function checkRangeFloat() {
   if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
     throwError('.error-message-range', 'Enter integers');
     return true;
   } 
 }
 
-
 function checkGuess(userGuess, player) {
   if (userGuess == winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "BOOM!";
   } else if (userGuess > winningNumber) {
-    select(`.guess-feedback-${player + 1}`).innerText = "Sorry, that is too high";
+    select(`.guess-feedback-${player + 1}`).innerText = "that is too high";
   } else if (userGuess < winningNumber) {
-    select(`.guess-feedback-${player + 1}`).innerText = "Sorry, that is too low";
+    select(`.guess-feedback-${player + 1}`).innerText = "that is too low";
   }
 }
 
@@ -96,7 +94,7 @@ function changeButton(button) {
   }
 }
 
-function findRange() {
+function getRange() {
   rangeBegin = parseFloat(select('#min-range').value);
   rangeEnd = parseFloat(select('#max-range').value);
   rangeDifference = rangeEnd - rangeBegin;
@@ -115,7 +113,8 @@ function initializeForm() {
   select('.user-1-last-guess').innerText = "";
   select('.user-2-last-guess').innerText = "";
   hideError('.error-message-range');
-  hideError('.error-message-guess');
+  hideError('.error-message-guess-1');
+  hideError('.error-message-guess-2');
 }
 
 function generateRandom() {
@@ -124,11 +123,13 @@ function generateRandom() {
 return randomNumber;
 }
 
-function getGuessValues () {
-  user1Guess = select('#guess1').value;
-  user2Guess = select('#guess2').value;
-
-  validateInteger([user1Guess, user2Guess]);
+function setGuesses (event) {
+  event.preventDefault();
+  user1Guess = parseFloat(select('#guess1').value);
+  user2Guess = parseFloat(select('#guess2').value);
+  var user1Name = select('#challenger-1-name').value;
+  var user2Name = select('#challenger-2-name').value;
+  validateGuess([user1Guess, user2Guess], [user1Name, user2Name]);
 
 // guessCounter();
 }
@@ -154,25 +155,20 @@ function hideError(field) {
 }
 
 function resetTheButtons() {
-  clearButton.disabled = true;
-  resetButton.disabled = true;
-  clearButton.classList.remove('hover');
-  resetButton.classList.remove('hover');
+  disableButton(resetButton);
+  disableButton(clearButton);
 }
 
 function select(field) {
   return document.querySelector(field);
 }
 
-function setRange() {  
-  findRange();
+function setRange(event) {
+  event.preventDefault(); 
+  getRange();
   validateRange();
-  if (resetButton.disabled == true) {
-    changeButton(resetButton);
-  }
-  if (clearButton.disabled == true) {
-    changeButton(clearButton);
-  }
+  enableButton(resetButton);
+  enableButton(clearButton);
 }
 
 function throwError(field, message) {
@@ -181,41 +177,54 @@ function throwError(field, message) {
   select(pTagSelector).innerText = message;
 }
 
-function validateInteger(userNum) {
+function validateGuess(guesses, names) {
   for(var i = 0; i < 2; i++) {
-
-    if (!Number.isInteger(parseFloat(userNum[i]))) {
-      throwError('.error-message-guess', 'Enter an integer');
-    } else if (!(rangeBegin <= userNum[i] && userNum[i] <= rangeEnd)) {
-      throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
-    } else if (checkIfZero(userNum[i])) {
-      throwError('.error-message-guess', 'Remove unneccesary zeros');
+    if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i)) {
+      console.log('break')
+      break;
     } else {
-      hideError('.error-message-guess');
-      checkGuess(userNum[i], i);
-      select(`.user-${i+1}-last-guess`).innerText = userNum[i];
-// select('.user-2-last-guess').innerText = user2Guess;
-// select('.right-side h1').innerText = "You Guessed:"
+      hideError(`.error-message-guess-${i + 1}`);
+      select(`.name-${i + 1}`).innerText = names[i];
+      select(`.user-${i + 1}-last-guess`).innerText = guesses[i];
+      checkGuess(guesses[i], i);
+      enableButton(clearButton);
+      enableButton(resetButton);
+    }
+  }
 }
-if (clearButton.disabled == true) {
-  changeButton(clearButton);
+
+function checkGuessFloat(guess, i) {
+  if (!Number.isInteger(guess)) {
+      throwError(`.error-message-guess-${i + 1}`, 'Enter an integer');
+      return true;
+  }
 }
-if (resetButton.disabled == true) {
-  changeButton(resetButton);
-}
-}
+
+function checkOutOfRange(guess, i) {
+  if (guess < rangeBegin || guess > rangeEnd) {
+    throwError(`.error-message-guess-${i + 1}`, `Enter a number between ${rangeBegin} and ${rangeEnd}`);
+    return true;
+  } 
 }
 
 function validateRange () {
-  if(checkIfDecimal() || checkIfOutOfRange() || checkForExtraZeros()) {
-    changeButton(submitButton);
+  if(checkRangeFloat() || checkSmallMax()) {
+    disableButton(submitButton);
   } else {
     hideError('.error-message-range');
-    select('.range-begin').innerText = select('#min-range').value;
-    select('.range-end').innerText = select('#max-range').value;
+    enableButton(submitButton);
+    select('.range-begin').innerText = rangeBegin;
+    select('.range-end').innerText = rangeEnd;
     winningNumber = generateRandom();
-    if (submitButton.disabled) {
-      changeButton(submitButton);
-    }
   }
+}
+
+function disableButton(button) {
+  button.disabled = true;
+  button.classList.remove("hover");
+}
+
+function enableButton(button) {
+  button.disabled = false;
+  button.classList.add("hover");
 }
