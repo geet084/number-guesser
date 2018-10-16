@@ -2,111 +2,46 @@ var rangeBegin = 1;
 var rangeEnd = 100;
 var rangeDifference = rangeEnd - rangeBegin;
 var winningNumber = generateRandom();
-var clearButton = document.querySelector('.clear-button');
-var resetButton = document.querySelector('.reset-button');
-var submitButton = document.querySelector('.submit-button');
-var updateButton = document.querySelector('.update-button');
-var guessedNum = 0;
+var clearButton = select('.clear-button');
+var resetButton = select('.reset-button');
+var submitButton = select('.submit-button');
+var updateButton = select('.update-button');
+var user1Guess = 0;
+var user2Guess = 0;
 var numGuessTries = 0;
 
 /*  Event Listeners  */
 
 updateButton.addEventListener("click", setRange);
-submitButton.addEventListener("click", getGuessValue);
+submitButton.addEventListener("click", getGuessValues);
 clearButton.addEventListener("click", clearInput);
 resetButton.addEventListener("click", initializeForm);
 
 initializeForm();
 
-function initializeForm() {
-  updateWinCard();
-  clearInput();
-  rangeBegin = 1;
-  rangeEnd = 100;
-  numGuessTries = 0;
-  rangeDifference = rangeEnd - rangeBegin;
-  winningNumber = generateRandom();
-  clearButton.disabled = true;
-  resetButton.disabled = true;
-  clearButton.classList.remove('hover');
-  resetButton.classList.remove('hover');
-  // document.querySelector('h4').innerText = "";
-  document.querySelector('.range-begin').innerText = 1;
-  document.querySelector('.range-end').innerText = 100;
-  document.querySelector('.last-guess').innerText = "";
-  // document.querySelector('h2').innerText = "";
-  // document.querySelector('.right-side h1').innerText = "Make a Guess";
-  hideError('.error-message-range');
-  hideError('.error-message-guess');
-}
 
-function generateRandom() {
-  var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
-  // document.querySelector('.winning-number').innerText = randomNumber;
-  return randomNumber;
-}
 
-function getGuessValue () {
-  guessedNum = document.querySelector('#guess').value;
+/* change all of doc.query to function called SELECT*/ 
+/* add prevent default, should be for whole page? */ 
 
-  validateInteger(guessedNum);
-  // guessCounter();
-}
 
-function guessCounter() {
-  if (document.querySelector('.error-message-guess').classList.contains('hidden')) {
-    numGuessTries += 1;
-    document.querySelector('h4').innerText = "Number of Guesses: " + numGuessTries;
-  }
-}
+// function addWinCard () {
+//   select('.user-1-name').innerText = "sponge bob";
+//   select('.user-2-name').innerText = "leroy";
+//   select('.user-winner').innerText = "someone";
+//   select('.win-guesses').innerText = numGuessTries;
+//   select('.win-elapsed-time').innerText = getElapsedTime;
+// }
 
-function validateInteger(userNum) {
-  if (!Number.isInteger(parseFloat(userNum))) {
-    throwError('.error-message-guess', 'Enter an integer');
-  } else if (!(rangeBegin <= userNum && userNum <= rangeEnd)) {
-    throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
-  } else if (checkIfZero(document.querySelector('#guess').value)) {
-    throwError('.error-message-guess', 'Remove unneccesary zeros');
-  } else {
-    hideError('.error-message-guess');
-    checkGuess(userNum);
-    document.querySelector('.last-guess').innerText = userNum;
-    document.querySelector('.right-side h1').innerText = "You Guessed:"
-  }
-  if (clearButton.disabled == true) {
-    changeButton(clearButton);
-  }
-  if (resetButton.disabled == true) {
-    changeButton(resetButton);
-  }
-}
 
-function findRange() {
-  rangeBegin = parseFloat(document.querySelector('#min-range').value);
-  rangeEnd = parseFloat(document.querySelector('#max-range').value);
-  rangeDifference = rangeEnd - rangeBegin;
-}
+function clearInput() {
+  select('#guess1').value = null;
+  select('#guess2').value = null;
+  select('#min-range').value = null;
+  select('#max-range').value = null;
+  changeButton(clearButton);
+};
 
-function validateRange() {
-  if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
-    throwError('.error-message-range', 'Enter integers');
-    changeButton(submitButton);
-  } else if (rangeBegin > rangeEnd) {
-    throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
-    changeButton(submitButton);
-  } else if (checkIfZero(document.querySelector('#min-range').value) || checkIfZero(document.querySelector('#max-range').value)) {
-    throwError('.error-message-range', 'Remove unneccesary zeros');
-    changeButton(submitButton);
-  } else {
-    hideError('.error-message-range');
-    if (submitButton.disabled == true) {
-      changeButton(submitButton);
-    }
-    document.querySelector('.range-begin').innerText = document.querySelector('#min-range').value;
-    document.querySelector('.range-end').innerText = document.querySelector('#max-range').value;
-    winningNumber = generateRandom();
-  }
-}
 
 function checkIfZero(inputValue) {
   if (inputValue[0] === '0' && inputValue.length > 1) {
@@ -116,31 +51,38 @@ function checkIfZero(inputValue) {
   }
 }
 
-function setRange() {  
-  findRange();
-  validateRange(rangeDifference);
-  if (resetButton.disabled == true) {
-    changeButton(resetButton);
-  }
-  if (clearButton.disabled == true) {
-    changeButton(clearButton);
+
+function checkForExtraZeros() {
+  if (checkIfZero(select('#min-range').value) || checkIfZero(select('#max-range').value)) {
+    throwError('.error-message-range', 'Remove unneccesary zeros');
+    return true;
+  } 
+}
+
+
+function checkIfOutOfRange() {
+  if (rangeBegin > rangeEnd) {
+    throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
+    return true;
   }
 }
 
-function clearInput() {
-  // document.querySelector('#guess').value = null;
-  document.querySelector('#min-range').value = null;
-  document.querySelector('#max-range').value = null;
-  changeButton(clearButton);
-};
 
-function checkGuess(userGuess) {
+function checkIfDecimal() {
+  if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
+    throwError('.error-message-range', 'Enter integers');
+    return true;
+  } 
+}
+
+
+function checkGuess(userGuess, player) {
   if (userGuess == winningNumber) {
-    document.querySelector('h2').innerText = "BOOM!";
+    select(`.guess-feedback-${player + 1}`).innerText = "BOOM!";
   } else if (userGuess > winningNumber) {
-    document.querySelector('h2').innerText = "Sorry, that is too high";
+    select(`.guess-feedback-${player + 1}`).innerText = "Sorry, that is too high";
   } else if (userGuess < winningNumber) {
-    document.querySelector('h2').innerText = "Sorry, that is too low";
+    select(`.guess-feedback-${player + 1}`).innerText = "Sorry, that is too low";
   }
 }
 
@@ -154,28 +96,41 @@ function changeButton(button) {
   }
 }
 
-function throwError(field, message) {
-  var pTagSelector = field + ' p';
-  document.querySelector(field).classList.remove('hidden');
-  document.querySelector(pTagSelector).innerText = message;
+function findRange() {
+  rangeBegin = parseFloat(select('#min-range').value);
+  rangeEnd = parseFloat(select('#max-range').value);
+  rangeDifference = rangeEnd - rangeBegin;
 }
 
-function hideError(field) {
-  if (!document.querySelector(field).classList.contains('hidden')) {
-      document.querySelector(field).classList.add('hidden');
-  }
+function initializeForm() {
+  // addWinCard();
+  clearInput();
+  // setRange();
+  numGuessTries = 0;
+  rangeDifference = rangeEnd - rangeBegin;
+  winningNumber = generateRandom();
+  resetTheButtons();
+  select('.range-begin').innerText = 1;
+  select('.range-end').innerText = 100;
+  select('.user-1-last-guess').innerText = "";
+  select('.user-2-last-guess').innerText = "";
+  hideError('.error-message-range');
+  hideError('.error-message-guess');
 }
 
-/* change all of doc.query to function called SELECT*/ 
-/* add prevent default, should be for whole page? */ 
+function generateRandom() {
+  var randomNumber = Math.floor(Math.random() * (rangeDifference + 1)) + rangeBegin;
+// select('.winning-number').innerText = randomNumber;
+return randomNumber;
+}
 
+function getGuessValues () {
+  user1Guess = select('#guess1').value;
+  user2Guess = select('#guess2').value;
 
-function addWinCard () {
-  document.querySelector('.user-1-name').innerText = "sponge bob";
-  document.querySelector('.user-2-name').innerText = "leroy";
-  document.querySelector('.user-winner').innerText = "someone";
-  document.querySelector('.win-guesses').innerText = numGuessTries;
-  document.querySelector('.win-elapsed-time').innerText = getElapsedTime;
+  validateInteger([user1Guess, user2Guess]);
+
+// guessCounter();
 }
 
 function getElapsedTime () {
@@ -183,4 +138,84 @@ function getElapsedTime () {
   var elapsed = new Date() - start;
   /* return ((elapsed / 1000) / 60).toFixed(1);  */ 
 
+}
+
+function guessCounter() {
+  if (select('.error-message-guess').classList.contains('hidden')) {
+    numGuessTries += 1;
+    select('h4').innerText = "Number of Guesses: " + numGuessTries;
+  }
+}
+
+function hideError(field) {
+  if (!select(field).classList.contains('hidden')) {
+    select(field).classList.add('hidden');
+  }
+}
+
+function resetTheButtons() {
+  clearButton.disabled = true;
+  resetButton.disabled = true;
+  clearButton.classList.remove('hover');
+  resetButton.classList.remove('hover');
+}
+
+function select(field) {
+  return document.querySelector(field);
+}
+
+function setRange() {  
+  findRange();
+  validateRange();
+  if (resetButton.disabled == true) {
+    changeButton(resetButton);
+  }
+  if (clearButton.disabled == true) {
+    changeButton(clearButton);
+  }
+}
+
+function throwError(field, message) {
+  var pTagSelector = field + ' p';
+  select(field).classList.remove('hidden');
+  select(pTagSelector).innerText = message;
+}
+
+function validateInteger(userNum) {
+  for(var i = 0; i < 2; i++) {
+
+    if (!Number.isInteger(parseFloat(userNum[i]))) {
+      throwError('.error-message-guess', 'Enter an integer');
+    } else if (!(rangeBegin <= userNum[i] && userNum[i] <= rangeEnd)) {
+      throwError('.error-message-guess', `Enter a number between ${rangeBegin} and ${rangeEnd}`);
+    } else if (checkIfZero(userNum[i])) {
+      throwError('.error-message-guess', 'Remove unneccesary zeros');
+    } else {
+      hideError('.error-message-guess');
+      checkGuess(userNum[i], i);
+      select(`.user-${i+1}-last-guess`).innerText = userNum[i];
+// select('.user-2-last-guess').innerText = user2Guess;
+// select('.right-side h1').innerText = "You Guessed:"
+}
+if (clearButton.disabled == true) {
+  changeButton(clearButton);
+}
+if (resetButton.disabled == true) {
+  changeButton(resetButton);
+}
+}
+}
+
+function validateRange () {
+  if(checkIfDecimal() || checkIfOutOfRange() || checkForExtraZeros()) {
+    changeButton(submitButton);
+  } else {
+    hideError('.error-message-range');
+    select('.range-begin').innerText = select('#min-range').value;
+    select('.range-end').innerText = select('#max-range').value;
+    winningNumber = generateRandom();
+    if (submitButton.disabled) {
+      changeButton(submitButton);
+    }
+  }
 }
