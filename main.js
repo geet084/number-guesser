@@ -199,11 +199,14 @@ function throwError(field, message) {
 }
 
 function validateGuess(guesses, names) {
+  var errorCount = 0;
   for(var i = 0; i < 2; i++) {
     if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i)) {
-      console.log('break')
-      break;
-    } else {
+      errorCount += 1;
+    }
+  }
+  if (errorCount === 0) {
+    for(var i = 0; i < 2; i++) {
       hideError(`.error-message-guess-${i + 1}`);
       select(`.name-${i + 1}`).innerText = names[i];
       select(`.user-${i + 1}-last-guess`).innerText = guesses[i];
