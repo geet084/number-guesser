@@ -19,15 +19,10 @@ resetButton.addEventListener("click", initializeForm);
 
 window.onload = initializeForm();
 
-// initializeForm();
-/*initialize on page load*/
 
-
-
-/* change all of doc.query to function called SELECT*/ 
-/* add prevent default, should be for whole page? */ 
-
-
+function select(field) {
+  return document.querySelector(field);
+}
 
 function addWinCard() {
   select('.user1').innerText = select('#challenger-1-name').value;
@@ -37,18 +32,6 @@ function addWinCard() {
   // select('.win-elapsed-time').innerText = getElapsedTime;
 }
 
-
-
-// function extra0(inputValue) {
-//   if (inputValue[0] === '0' && inputValue.length > 1) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-
-
 function checkRange0s() {
   if (extra0(select('#min-range').value) || extra0(select('#max-range').value)) {
     throwError('.error-message-range', 'Remove unneccesary zeros');
@@ -56,14 +39,12 @@ function checkRange0s() {
   } 
 }
 
-
 function checkSmallMax() {
   if (rangeBegin > rangeEnd) {
     throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
     return true;
   }
 }
-
 
 function checkRangeFloat() {
   if (!Number.isInteger(rangeBegin) || !Number.isInteger(rangeEnd)) {
@@ -83,6 +64,20 @@ function checkGuess(userGuess, player) {
   }
 }
 
+function checkGuessFloat(guess, i) {
+  if (!Number.isInteger(guess)) {
+      throwError(`.error-message-guess-${i + 1}`, 'Enter an integer');
+      return true;
+  }
+}
+
+function checkOutOfRange(guess, i) {
+  if (guess < rangeBegin || guess > rangeEnd) {
+    throwError(`.error-message-guess-${i + 1}`, `Enter a number between ${rangeBegin} and ${rangeEnd}`);
+    return true;
+  } 
+}
+
 function changeButton(button) {
   if (button.disabled == true) {
     button.disabled = false;
@@ -93,49 +88,25 @@ function changeButton(button) {
   }
 }
 
-function getRange() {
-  rangeBegin = parseFloat(select('#min-range').value);
-  rangeEnd = parseFloat(select('#max-range').value);
-  rangeDifference = rangeEnd - rangeBegin;
-}
-
 function clearGuesses() {
   resetInputField(['#guess1', '#guess2']);
   changeButton(clearButton);
 }
 
-function resetInputField(fields) {
-  fields.forEach(function(element) {
-    select(element).value = null;
-  });
+function disableButton(button) {
+  button.disabled = true;
+  button.classList.remove("hover");
 }
 
-function setDefaultGameValues() {
-  numGuessTries = 0;
-  rangeBegin = 1;
-  rangeEnd = 100;
+function enableButton(button) {
+  button.disabled = false;
+  button.classList.add("hover");
+}
+
+function getRange() {
+  rangeBegin = parseFloat(select('#min-range').value);
+  rangeEnd = parseFloat(select('#max-range').value);
   rangeDifference = rangeEnd - rangeBegin;
-  winningNumber = generateRandom();
-}
-
-function resetDisplay() {
-  select('.range-begin').innerText = 1;
-  select('.range-end').innerText = 100;
-  resetInputField(['#min-range', '#max-range']);
-  select('.user-1-last-guess').innerText = "";
-  select('.user-2-last-guess').innerText = "";
-  hideError('.error-message-range');
-  hideError('.error-message-guess-1');
-  hideError('.error-message-guess-2');
-}
-
-function initializeForm() {
-  resetInputField(['#challenger-1-name', '#challenger-2-name']);
-  resetInputField(['#min-range', '#max-range']);
-  clearGuesses();
-  setDefaultGameValues();
-  resetDisplay();
-  resetTheButtons();
 }
 
 function generateRandom() {
@@ -144,17 +115,6 @@ function generateRandom() {
 return randomNumber;
 }
 
-
-function setGuesses (event) {
-  event.preventDefault();
-  user1Guess = parseFloat(select('#guess1').value);
-  user2Guess = parseFloat(select('#guess2').value);
-  var user1Name = select('#challenger-1-name').value;
-  var user2Name = select('#challenger-2-name').value;
-  validateGuess([user1Guess, user2Guess], [user1Name, user2Name]);
-
-// guessCounter();
-}
 
 function getElapsedTime () {
   var start = new Date();
@@ -175,13 +135,53 @@ function hideError(field) {
   }
 }
 
+function initializeForm() {
+  resetInputField(['#challenger-1-name', '#challenger-2-name']);
+  resetInputField(['#min-range', '#max-range']);
+  clearGuesses();
+  setDefaultGameValues();
+  resetDisplay();
+  resetTheButtons();
+}
+
+function resetDisplay() {
+  select('.range-begin').innerText = 1;
+  select('.range-end').innerText = 100;
+  resetInputField(['#min-range', '#max-range']);
+  select('.user-1-last-guess').innerText = "";
+  select('.user-2-last-guess').innerText = "";
+  hideError('.error-message-range');
+  hideError('.error-message-guess-1');
+  hideError('.error-message-guess-2');
+}
+
 function resetTheButtons() {
   disableButton(resetButton);
   disableButton(clearButton);
 }
 
-function select(field) {
-  return document.querySelector(field);
+function resetInputField(fields) {
+  fields.forEach(function(element) {
+    select(element).value = null;
+  });
+}
+
+function setDefaultGameValues() {
+  numGuessTries = 0;
+  rangeBegin = 1;
+  rangeEnd = 100;
+  rangeDifference = rangeEnd - rangeBegin;
+  winningNumber = generateRandom();
+}
+
+function setGuesses (event) {
+  event.preventDefault();
+  user1Guess = parseFloat(select('#guess1').value);
+  user2Guess = parseFloat(select('#guess2').value);
+  var user1Name = select('#challenger-1-name').value;
+  var user2Name = select('#challenger-2-name').value;
+  validateGuess([user1Guess, user2Guess], [user1Name, user2Name]);
+// guessCounter();
 }
 
 function setRange(event) {
@@ -214,20 +214,6 @@ function validateGuess(guesses, names) {
   }
 }
 
-function checkGuessFloat(guess, i) {
-  if (!Number.isInteger(guess)) {
-      throwError(`.error-message-guess-${i + 1}`, 'Enter an integer');
-      return true;
-  }
-}
-
-function checkOutOfRange(guess, i) {
-  if (guess < rangeBegin || guess > rangeEnd) {
-    throwError(`.error-message-guess-${i + 1}`, `Enter a number between ${rangeBegin} and ${rangeEnd}`);
-    return true;
-  } 
-}
-
 function validateRange () {
   if(checkRangeFloat() || checkSmallMax()) {
     disableButton(submitButton);
@@ -238,14 +224,4 @@ function validateRange () {
     select('.range-end').innerText = rangeEnd;
     winningNumber = generateRandom();
   }
-}
-
-function disableButton(button) {
-  button.disabled = true;
-  button.classList.remove("hover");
-}
-
-function enableButton(button) {
-  button.disabled = false;
-  button.classList.add("hover");
 }
