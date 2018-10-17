@@ -114,13 +114,14 @@ function checkValidGuessEntered(errors, guesses) {
       errors += 1;
     }
   }
+    return errors;
 }
 
 function checkWinConditions() {
     if(select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
     addWinCard();
     winGameIncreaseRange();
-    alert('BOOM, the difficulty has increased!');
+    select('.increase-notification').classList.remove('hidden');
   }
 }
 
@@ -261,7 +262,7 @@ function throwError(field, message) {
 
 function validateGuess(userGuesses, userNames) {
   var errorCount = 0;
-  checkValidGuessEntered(errorCount, userGuesses)
+  errorCount = checkValidGuessEntered(errorCount, userGuesses);
   startGame(errorCount, userGuesses, userNames);
   guessCount += 1;
   checkWinConditions();
