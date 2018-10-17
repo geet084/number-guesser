@@ -230,7 +230,6 @@ input[type="number"]:focus, input[type="text"]:focus {
 }
 
 /*RIGHT SIDE*/
-
 .right-side {
   background-color: #D1D2D4;
   border-left: 2px solid #B4B4B4;
@@ -278,6 +277,12 @@ input[type="number"]:focus, input[type="text"]:focus {
   margin: 0 10px;
   padding: 5px 30px;
   text-transform: uppercase;
+}
+
+.user1,
+.versus,
+.user2 {
+  flex: 1;
 }
 
 .result-bottom {
