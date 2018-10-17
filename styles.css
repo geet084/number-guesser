@@ -225,6 +225,74 @@ input[type="number"]:focus, input[type="text"]:focus {
   font-weight: 700;
 }
 
+.increase-notification {
+  text-align: center;
+}
+
+/*RIGHT SIDE*/
+.bold-text {
+  font-weight: 1000;
+}
+
+.right-side {
+  background-color: #D1D2D4;
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  padding-top: 10px;
+  border-left: 2px solid #B4B4B4;
+}
+
+.card {
+  display: flex;
+  flex: 3;
+  justify-content: space-between;
+  padding: 5px;
+  color: #7f7f7f;
+  border: 2px solid #B4B4B4;
+  margin: .75% 5%;
+}
+
+.versus {
+  font-size: smaller;
+}
+
+.delete-icon img {
+  width: 25px;
+  margin-bottom: -7px;
+  margin-left: 40px;
+}
+
+.user-winner {
+  margin: 2% 0;
+}
+
+.user-winner p {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.user-name-area {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 0 10px;
+  padding: 5px 30px;
+  color: #727278;
+  border-bottom: 2px solid #EAEAEA;
+  text-transform: uppercase;
+}
+
+.result-bottom {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 5px 0;
+  margin: 0 10px;
+  border-top: 2px solid #EAEAEA;
+}
+
+/*MEDIA QUERY*/
 @media (orientation: portrait) {
   main {
     flex-direction: column;
@@ -270,60 +338,7 @@ input[type="number"]:focus, input[type="text"]:focus {
     border-top: 1px solid #F0F0F0;
     border-left: 0;
   }
-}
-
-/*RIGHT SIDE*/
-.bold-text {
-  font-weight: 1000;
-}
-
-.right-side {
-  background-color: #D1D2D4;
-  text-align: center;
-  font-size: 1rem;
-  display: flex;
-  padding-top: 10px;
-}
-
-.card {
-  display: flex;
-  flex: 3;
-  justify-content: space-between;
-  padding: 5px;
-  color: #7f7f7f;
-  border: 2px solid #ababab;
-  margin: .75% 5%;
-}
-
-.versus {
-  font-size: smaller;
-}
-
-.delete-icon img {
-  width: 25px;
-  margin-bottom: -7px;
-  margin-left: 40px;
-}
-
-.user-winner p {
-  font-size: 2rem;
-}
-
-.user-name-area {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  margin: 5px 40px;
-  color: #727278;
-}
-
-.result-bottom {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  margin: 5px 10px;
-}
-
-.delete-button:hover {
-  fill:#EF4136;
+  .right-side {
+    border-left: none;
+  }
 }

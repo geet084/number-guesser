@@ -62,7 +62,7 @@ function addWinCard() {
         <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
       </div>
       <div class="delete-icon">
-        <p><img src="delete.svg" target="delete button" class="card${cardNum}"></p>  
+        <p><img src="images/delete.svg" target="delete button" class="card${cardNum}"></p>  
       </div>
     </div>
   </article>`
@@ -190,6 +190,7 @@ function resetDisplay() {
   hideError('.error-message-guess-2');
   select('.guess-feedback-1').innerText = '';
   select('.guess-feedback-2').innerText = '';
+  select('.increase-notification').classList.add('hidden');
 }
 
 function resetInputField(fields) {
@@ -227,11 +228,13 @@ function setRange(event) {
   validateRange();
   enableButton(resetButton);
   enableButton(clearButton);
+  select('.increase-notification').classList.add('hidden');
 }
 
 function setStartTime() {
   if (newGame) {
     gameStartTime = new Date().getTime() / 1000;
+    select('.increase-notification').classList.add('hidden');
     newGame = false;
   }
 }
