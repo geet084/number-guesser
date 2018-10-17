@@ -249,6 +249,17 @@ input[type="number"]:focus, input[type="text"]:focus {
   padding: 5px;
 }
 
+.pulse{
+  animation: pulse 0.5s ease-in infinite;
+}
+
+@keyframes pulse{
+  25%  {transform: scale(0.9);}
+  75%  {transform: scale(1.2);}
+}
+
+
+
 .versus {
   font-size: smaller;
 }
