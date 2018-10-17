@@ -55,7 +55,7 @@ function addWinCard() {
       </div>
     </div>
   </article>`
-  select('.right-side').prepend(elem)
+  select('.right-side').prepend(elem);
   guessCount = 0;
 }
 
