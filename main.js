@@ -35,15 +35,9 @@ function addWinCard() {
   elem.innerHTML = 
   `<article class="white-box card card${cardNum}">
     <div class="user-name-area">
-      <div>
-        <p class="user1"><strong>${select('.name-1').innerText}</strong></p>
-      </div>
-      <div class="versus">
-        <p>  VS  </p>
-      </div>
-      <div>
-        <p class="user2"><strong>${select('.name-2').innerText}</strong></p>
-      </div>
+      <p class="user1"><strong>${select('.name-1').innerText}</strong></p>
+      <p class="versus">  VS  </p>
+      <p class="user2"><strong>${select('.name-2').innerText}</strong></p>
     </div>
     <div class="user-winner">
       <p><strong>${winnerName}</strong></p>
