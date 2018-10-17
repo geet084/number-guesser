@@ -7,6 +7,7 @@ var user2Guess = 0;
 var guessCount = 0;
 var newGame = true;
 var gameStartTime = 0;
+var remove = select('.right-side');
 var cardNum = 0;
 
 /*  Event Listeners  */
@@ -15,7 +16,7 @@ select('.update-button').addEventListener("click", setRange);
 select('.submit-button').addEventListener("click", setGuesses);
 select('.clear-button').addEventListener("click", clearGuesses);
 select('.reset-button').addEventListener("click", initializeForm);
-select('.right-side').addEventListener("click", removeCard);
+remove.addEventListener("click", removeCard);
 
 window.onload = initializeForm();
 
@@ -122,7 +123,7 @@ function checkWinConditions() {
 
 function clearGuesses() {
   resetInputField(['#guess1', '#guess2']);
-  disableButton(clearButton);
+  disableButton(select('.clear-button'));
 }
 
 function disableButton(button) {
@@ -196,8 +197,8 @@ function resetInputField(fields) {
 }
 
 function resetTheButtons() {
-  disableButton(resetButton);
-  disableButton(clearButton);
+  disableButton(select('.reset-button'));
+  disableButton(select('.clear-button'));
 }
 
 function setDefaultGameValues() {
@@ -222,8 +223,8 @@ function setRange(event) {
   event.preventDefault(); 
   getRange();
   validateRange();
-  enableButton(resetButton);
-  enableButton(clearButton);
+  enableButton(select('.reset-button'));
+  enableButton(select('.clear-button'));
   select('.increase-notification').classList.add('hidden');
 }
 
@@ -248,8 +249,8 @@ function updateValidGuess(errors, guesses, names) {
         select(`.name-${i + 1}`).innerText = names[i];
         select(`.user-${i + 1}-last-guess`).innerText = guesses[i];
         checkGuess(guesses[i], i);
-        enableButton(clearButton);
-        enableButton(resetButton);
+        enableButton(select('.clear-button'));
+        enableButton(select('.reset-button'));
         setStartTime();
     }
     guessCount += 1;
@@ -265,10 +266,10 @@ function validateGuess(userGuesses, userNames) {
 
 function validateRange () {
   if(checkRangeFloat() || checkSmallMax()) {
-    disableButton(submitButton);
+    disableButton(select('.submit-button'));
   } else {
     hideError('.error-message-range');
-    enableButton(submitButton);
+    enableButton(select('.submit-button'));
     select('.range-begin').innerText = rangeBegin;
     select('.range-end').innerText = rangeEnd;
     winningNumber = generateRandom();
