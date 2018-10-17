@@ -1,6 +1,15 @@
-# Number Guesser Single Player
+# Number Guesser
 
-## Build a game where a user can guess a number between 1 and 100, with the ability for the user to add custom ranges for increased difficulty of play
+## Synopsis
+  Number Guesser is a game in which two players compete against each other to guess a random number.
+
+## Screenshots
+Our version:
+![screenshot of our version]()
+
+Original image:
+![screenshot of original Number Guesser](images/number-guesser-original.jpg)
+
 ## Built With
 * HTML
 * CSS
