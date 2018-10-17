@@ -12,6 +12,7 @@ var guessCount = 0;
 var newGame = true;
 var gameStartTime = 0;
 var remove = select('.right-side');
+var cardNum = 0;
 
 /*  Event Listeners  */
 
@@ -28,44 +29,43 @@ function select(field) {
   return document.querySelector(field);
 }
 
-var cardNum = 0;
 function addWinCard() {
-    cardNum++;
+  cardNum++;
   for (var i = 1; i < 3; i++) {
     if (select(`.guess-feedback-${i}`).innerText === "BOOM!" ) {
       var winnerName = select(`.name-${i}`).innerText.toUpperCase();
     }
   }
   var elem = document.createElement('div');
-  elem.innerHTML = `
-  <article class="white-box card card${cardNum}">
-        <div class="user-name-area">
-          <div>
-            <p class="user1 bold-text">${select('.name-1').innerText}</p>
-          </div>
-          <div class="versus">
-            <p>  VS  </p>
-          </div>
-          <div>
-            <p class="user2 bold-text">${select('.name-2').innerText}</p>
-          </div>
-        </div>
-        <div class="user-winner">
-          <p class="bold-text">${winnerName}</p>
-          <p>WINNER</p>
-        </div>
-        <div class="result-bottom">
-          <div class="win-guesses">
-            <p><span class="bold-text">${guessCount}</span> GUESSES</p>
-          </div>
-          <div class="win-elapsed-time">
-            <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
-          </div>
-          <div class="delete-icon">
-            <p><img src="delete.svg" target="delete button" class="card${cardNum}"></p>  
-          </div>
-        </div>
-      </article>`
+  elem.innerHTML = 
+  `<article class="white-box card card${cardNum}">
+    <div class="user-name-area">
+      <div>
+        <p class="user1 bold-text">${select('.name-1').innerText}</p>
+      </div>
+      <div class="versus">
+        <p>  VS  </p>
+      </div>
+      <div>
+        <p class="user2 bold-text">${select('.name-2').innerText}</p>
+      </div>
+    </div>
+    <div class="user-winner">
+      <p class="bold-text">${winnerName}</p>
+      <p>WINNER</p>
+    </div>
+    <div class="result-bottom">
+      <div class="win-guesses">
+        <p><span class="bold-text">${guessCount}</span> GUESSES</p>
+      </div>
+      <div class="win-elapsed-time">
+        <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
+      </div>
+      <div class="delete-icon">
+        <p><img src="delete.svg" target="delete button" class="card${cardNum}"></p>  
+      </div>
+    </div>
+  </article>`
   select('.right-side').prepend(elem)
   guessCount = 0;
 }
@@ -105,6 +105,22 @@ function checkSmallMax() {
   if (rangeBegin > rangeEnd) {
     throwError('.error-message-range', `Max range must be greater than ${rangeBegin}`);
     return true;
+  }
+}
+
+function checkValidGuessEntered(errors, guesses) {
+    for(var i = 0; i < 2; i++) {
+    if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i)) {
+      errors += 1;
+    }
+  }
+}
+
+function checkWinConditions() {
+    if(select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
+    addWinCard();
+    winGameIncreaseRange();
+    alert('BOOM, the difficulty has increased!');
   }
 }
 
@@ -220,36 +236,32 @@ function setStartTime() {
   }
 }
 
+function startGame(errors, guesses, names) {
+  if (errors === 0) {
+    for(var i = 0; i < 2; i++) {
+        hideError(`.error-message-guess-${i + 1}`);
+        select(`.name-${i + 1}`).innerText = names[i];
+        select(`.user-${i + 1}-last-guess`).innerText = guesses[i];
+        checkGuess(guesses[i], i);
+        enableButton(clearButton);
+        enableButton(resetButton);
+        setStartTime();
+    }
+  }
+}
+
 function throwError(field, message) {
   var pTagSelector = field + ' p';
   select(field).classList.remove('hidden');
   select(pTagSelector).innerText = message;
 }
 
-function validateGuess(guesses, names) {
+function validateGuess(userGuesses, userNames) {
   var errorCount = 0;
-  for(var i = 0; i < 2; i++) {
-    if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i)) {
-      errorCount += 1;
-    }
-  }
-  if (errorCount === 0) {
-    for(var i = 0; i < 2; i++) {
-      hideError(`.error-message-guess-${i + 1}`);
-      select(`.name-${i + 1}`).innerText = names[i];
-      select(`.user-${i + 1}-last-guess`).innerText = guesses[i];
-      checkGuess(guesses[i], i);
-      enableButton(clearButton);
-      enableButton(resetButton);
-      setStartTime();
-    }
-    guessCount += 1;
-  }
-  if(select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
-    addWinCard();
-    winGameIncreaseRange();
-    alert('BOOM, the difficulty has increased!');
-  }
+  checkValidGuessEntered(errorCount, userGuesses)
+  startGame(errorCount, userGuesses, userNames);
+  guessCount += 1;
+  checkWinConditions();
 }
 
 function validateRange () {
