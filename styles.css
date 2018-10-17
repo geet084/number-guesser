@@ -214,9 +214,9 @@ input[type="number"]:focus, input[type="text"]:focus {
 
 .challenger {
   color: #717279;
-  text-align: center;
   flex-basis: 50%;
   margin: 0;
+  text-align: center;
 }
 
 .last-guess {
@@ -230,27 +230,24 @@ input[type="number"]:focus, input[type="text"]:focus {
 }
 
 /*RIGHT SIDE*/
-.bold-text {
-  font-weight: 1000;
-}
 
 .right-side {
   background-color: #D1D2D4;
-  text-align: center;
-  font-size: 1rem;
-  display: flex;
-  padding-top: 10px;
   border-left: 2px solid #B4B4B4;
+  display: flex;
+  font-size: 1rem;
+  padding-top: 10px;
+  text-align: center;
 }
 
 .card {
+  border: 2px solid #B4B4B4;
+  color: #7F7F7F;
   display: flex;
   flex: 3;
   justify-content: space-between;
-  padding: 5px;
-  color: #7f7f7f;
-  border: 2px solid #B4B4B4;
   margin: .75% 5%;
+  padding: 5px;
 }
 
 .versus {
@@ -273,72 +270,89 @@ input[type="number"]:focus, input[type="text"]:focus {
 }
 
 .user-name-area {
+  border-bottom: 2px solid #EAEAEA;
+  color: #727278;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   margin: 0 10px;
   padding: 5px 30px;
-  color: #727278;
-  border-bottom: 2px solid #EAEAEA;
   text-transform: uppercase;
 }
 
 .result-bottom {
+  border-top: 2px solid #EAEAEA;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 5px 0;
   margin: 0 10px;
-  border-top: 2px solid #EAEAEA;
+  padding: 5px 0;
 }
 
 /*MEDIA QUERY*/
-@media (orientation: portrait) {
+@media screen and (orientation: portrait) {
   main {
     flex-direction: column;
-  }
-
-  .horizontal-line {
-  width: 36px;
   }
 
   section {
     height: 100%;
   }
+
   .range-input {
     flex-direction: column;
   }
+
   .update-button {
-    width: 50%;
     float: left;
+    width: 50%;
   }
+
   .name-and-guess {
     flex-direction: column;
   }
+  
   .submit-clear-reset-buttons {
     flex-direction: column;
   }
+  
   .submit-button,
   .reset-button,
   .clear-button {
+    margin-bottom: 2%;
     margin-top: 2%;
-    margin-bottom: 2%
   }
+  
   .challenger-container {
     flex-direction: column;
   }
+  
   .challenger {
     padding: 2%;
   }
+  
   .challenger:nth-child(1) {
-  border-bottom: 1px solid #F0F0F0;
-  border-right: 0;
+    border-bottom: 1px solid #F0F0F0;
+    border-right: 0;
   }
+  
   .challenger:nth-child(2) {
     border-top: 1px solid #F0F0F0;
     border-left: 0;
   }
+  
   .right-side {
     border-left: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+    padding-top: 20px;
+  }
+
+  .horizontal-line {
+    width: 13px;
   }
 }

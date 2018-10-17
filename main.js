@@ -7,7 +7,6 @@ var user2Guess = 0;
 var guessCount = 0;
 var newGame = true;
 var gameStartTime = 0;
-var remove = select('.right-side');
 var cardNum = 0;
 
 /*  Event Listeners  */
@@ -16,7 +15,7 @@ select('.update-button').addEventListener("click", setRange);
 select('.submit-button').addEventListener("click", setGuesses);
 select('.clear-button').addEventListener("click", clearGuesses);
 select('.reset-button').addEventListener("click", initializeForm);
-remove.addEventListener("click", removeCard);
+select('.right-side').addEventListener("click", removeCard);
 
 window.onload = initializeForm();
 
@@ -29,7 +28,7 @@ function addWinCard() {
   cardNum++;
   for (var i = 1; i < 3; i++) {
     if (select(`.guess-feedback-${i}`).innerText === "BOOM!" ) {
-      var winnerName = select(`.name-${i}`).innerText.toUpperCase();
+      var winnerName = select(`.name-${i}`).innerText;
     }
   }
   var elem = document.createElement('div');
@@ -37,25 +36,25 @@ function addWinCard() {
   `<article class="white-box card card${cardNum}">
     <div class="user-name-area">
       <div>
-        <p class="user1 bold-text">${select('.name-1').innerText}</p>
+        <p class="user1"><strong>${select('.name-1').innerText}</strong></p>
       </div>
       <div class="versus">
         <p>  VS  </p>
       </div>
       <div>
-        <p class="user2 bold-text">${select('.name-2').innerText}</p>
+        <p class="user2"><strong>${select('.name-2').innerText}</strong></p>
       </div>
     </div>
     <div class="user-winner">
-      <p class="bold-text">${winnerName}</p>
+      <p><strong>${winnerName}</strong></p>
       <p>WINNER</p>
     </div>
     <div class="result-bottom">
       <div class="win-guesses">
-        <p><span class="bold-text">${guessCount}</span> GUESSES</p>
+        <p><strong>${guessCount}</strong></span> GUESSES</p>
       </div>
       <div class="win-elapsed-time">
-        <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
+        <p><strong>${getElapsedTime()}</strong></span> MINUTES</p>
       </div>
       <div class="delete-icon">
         <p><img src="images/delete.svg" target="delete button" class="card${cardNum}"></p>  
@@ -105,7 +104,7 @@ function checkSmallMax() {
 }
 
 function checkValidGuessEntered(errors, guesses) {
-    for(var i = 0; i < 2; i++) {
+    for (var i = 0; i < 2; i++) {
     if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i)) {
       errors += 1;
     }
@@ -170,7 +169,7 @@ function initializeForm() {
 }
 
 function removeCard(selectedCard) {
-  if(event.target.tagName === 'IMG') { 
+  if (event.target.tagName === 'IMG') { 
     var deletedCard = select(`.${event.target.classList.value}`);
     deletedCard.remove();
   }
@@ -179,15 +178,15 @@ function removeCard(selectedCard) {
 function resetDisplay() {
   select('.range-begin').innerText = 1;
   select('.range-end').innerText = 100;
-  resetInputField(['#min-range', '#max-range']);
   select('.user-1-last-guess').innerText = "??";
   select('.user-2-last-guess').innerText = "??";
-  hideError('.error-message-range');
-  hideError('.error-message-guess-1');
-  hideError('.error-message-guess-2');
   select('.guess-feedback-1').innerText = '';
   select('.guess-feedback-2').innerText = '';
   select('.increase-notification').classList.add('hidden');
+  resetInputField(['#min-range', '#max-range']);
+  hideError('.error-message-range');
+  hideError('.error-message-guess-1');
+  hideError('.error-message-guess-2');
 }
 
 function resetInputField(fields) {
@@ -249,10 +248,10 @@ function updateValidGuess(errors, guesses, names) {
         select(`.name-${i + 1}`).innerText = names[i];
         select(`.user-${i + 1}-last-guess`).innerText = guesses[i];
         checkGuess(guesses[i], i);
-        enableButton(select('.clear-button'));
-        enableButton(select('.reset-button'));
         setStartTime();
     }
+    enableButton(select('.clear-button'));
+    enableButton(select('.reset-button'));
     guessCount += 1;
     checkWinConditions();
   }
@@ -265,7 +264,7 @@ function validateGuess(userGuesses, userNames) {
 }
 
 function validateRange () {
-  if(checkRangeFloat() || checkSmallMax()) {
+  if (checkRangeFloat() || checkSmallMax()) {
     disableButton(select('.submit-button'));
   } else {
     hideError('.error-message-range');
