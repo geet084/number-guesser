@@ -59,6 +59,13 @@ function addWinCard() {
   guessCount = 0;
 }
 
+function checkEmptyName(i) {
+  if (select(`#challenger-${i + 1}-name`).value === '') {
+      throwError(`.error-message-guess-${i + 1}`, 'Enter a name');
+      return true;
+  }
+}
+
 function checkGuess(userGuess, player) {
   if (userGuess == winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "BOOM!";
@@ -99,7 +106,7 @@ function checkSmallMax() {
 
 function checkValidGuessEntered(errors, guesses) {
     for (var i = 0; i < 2; i++) {
-    if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i)) {
+    if (checkGuessFloat(guesses[i], i) || checkOutOfRange(guesses[i], i) || checkEmptyName(i)) {
       errors += 1;
     }
   }
