@@ -225,6 +225,10 @@ input[type="number"]:focus, input[type="text"]:focus {
   font-weight: 700;
 }
 
+.increase-notification {
+  text-align: center;
+}
+
 @media (orientation: portrait) {
   main {
     flex-direction: column;
