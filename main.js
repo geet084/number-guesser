@@ -167,11 +167,13 @@ function resetDisplay() {
   select('.range-begin').innerText = 1;
   select('.range-end').innerText = 100;
   resetInputField(['#min-range', '#max-range']);
-  select('.user-1-last-guess').innerText = "";
-  select('.user-2-last-guess').innerText = "";
+  select('.user-1-last-guess').innerText = "??";
+  select('.user-2-last-guess').innerText = "??";
   hideError('.error-message-range');
   hideError('.error-message-guess-1');
   hideError('.error-message-guess-2');
+  select('.guess-feedback-1').innerText = '';
+  select('.guess-feedback-2').innerText = '';
 }
 
 function resetInputField(fields) {
