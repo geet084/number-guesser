@@ -62,7 +62,7 @@ function addWinCard() {
             <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
           </div>
           <div class="delete-icon">
-            <p><img src="delete.svg" target="delete button" class="card${cardNum}"></p>  
+            <p><img src="images/delete.svg" target="delete button" class="card${cardNum}"></p>  
           </div>
         </div>
       </article>`
