@@ -2,25 +2,20 @@ var rangeBegin = 1;
 var rangeEnd = 100;
 var rangeDifference = rangeEnd - rangeBegin;
 var winningNumber = generateRandom();
-var clearButton = select('.clear-button');
-var resetButton = select('.reset-button');
-var submitButton = select('.submit-button');
-var updateButton = select('.update-button');
 var user1Guess = 0;
 var user2Guess = 0;
 var guessCount = 0;
 var newGame = true;
 var gameStartTime = 0;
-var remove = select('.right-side');
 var cardNum = 0;
 
 /*  Event Listeners  */
 
-updateButton.addEventListener("click", setRange);
-submitButton.addEventListener("click", setGuesses);
-clearButton.addEventListener("click", clearGuesses);
-resetButton.addEventListener("click", initializeForm);
-remove.addEventListener("click", removeCard);
+select('.update-button').addEventListener("click", setRange);
+select('.submit-button').addEventListener("click", setGuesses);
+select('.clear-button').addEventListener("click", clearGuesses);
+select('.reset-button').addEventListener("click", initializeForm);
+select('.right-side').addEventListener("click", removeCard);
 
 window.onload = initializeForm();
 
@@ -240,6 +235,12 @@ function setStartTime() {
   }
 }
 
+function throwError(field, message) {
+  var pTagSelector = field + ' p';
+  select(field).classList.remove('hidden');
+  select(pTagSelector).innerText = message;
+}
+
 function updateValidGuess(errors, guesses, names) {
   if (errors === 0) {
     for(var i = 0; i < 2; i++) {
@@ -254,12 +255,6 @@ function updateValidGuess(errors, guesses, names) {
     guessCount += 1;
     checkWinConditions();
   }
-}
-
-function throwError(field, message) {
-  var pTagSelector = field + ' p';
-  select(field).classList.remove('hidden');
-  select(pTagSelector).innerText = message;
 }
 
 function validateGuess(userGuesses, userNames) {
