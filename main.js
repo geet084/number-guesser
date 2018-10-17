@@ -118,7 +118,7 @@ function checkValidGuessEntered(errors, guesses) {
 }
 
 function checkWinConditions() {
-    if(select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
+    if (select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
     addWinCard();
     winGameIncreaseRange();
     select('.increase-notification').classList.remove('hidden');
@@ -240,7 +240,7 @@ function setStartTime() {
   }
 }
 
-function startGame(errors, guesses, names) {
+function updateValidGuess(errors, guesses, names) {
   if (errors === 0) {
     for(var i = 0; i < 2; i++) {
         hideError(`.error-message-guess-${i + 1}`);
@@ -251,6 +251,8 @@ function startGame(errors, guesses, names) {
         enableButton(resetButton);
         setStartTime();
     }
+    guessCount += 1;
+    checkWinConditions();
   }
 }
 
@@ -263,9 +265,7 @@ function throwError(field, message) {
 function validateGuess(userGuesses, userNames) {
   var errorCount = 0;
   errorCount = checkValidGuessEntered(errorCount, userGuesses);
-  startGame(errorCount, userGuesses, userNames);
-  guessCount += 1;
-  checkWinConditions();
+  updateValidGuess(errorCount, userGuesses, userNames);
 }
 
 function validateRange () {
