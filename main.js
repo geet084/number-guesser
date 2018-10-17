@@ -174,6 +174,7 @@ function resetDisplay() {
   hideError('.error-message-guess-2');
   select('.guess-feedback-1').innerText = '';
   select('.guess-feedback-2').innerText = '';
+  select('.increase-notification').classList.add('hidden');
 }
 
 function resetInputField(fields) {
@@ -211,11 +212,13 @@ function setRange(event) {
   validateRange();
   enableButton(resetButton);
   enableButton(clearButton);
+  select('.increase-notification').classList.add('hidden');
 }
 
 function setStartTime() {
   if (newGame) {
     gameStartTime = new Date().getTime() / 1000;
+    select('.increase-notification').classList.add('hidden');
     newGame = false;
   }
 }
@@ -248,7 +251,7 @@ function validateGuess(guesses, names) {
   if(select('.guess-feedback-1').innerText === "BOOM!" || select('.guess-feedback-2').innerText === "BOOM!") {
     addWinCard();
     winGameIncreaseRange();
-    alert('BOOM, the difficulty has increased!');
+    select('.increase-notification').classList.remove('hidden');
   }
 }
 
