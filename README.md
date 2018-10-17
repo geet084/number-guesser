@@ -5,7 +5,7 @@
 
 ## Screenshots
 Our version:
-![screenshot of our version]()
+![screenshot of our version](images/our-number-guesser-screenshot.jpg)
 
 Original image:
 ![screenshot of original Number Guesser](images/number-guesser-original.jpg)
