@@ -28,7 +28,9 @@ function select(field) {
   return document.querySelector(field);
 }
 
+var cardNum = 0;
 function addWinCard() {
+    cardNum++;
   for (var i = 1; i < 3; i++) {
     if (select(`.guess-feedback-${i}`).innerText === "BOOM!" ) {
       var winnerName = select(`.name-${i}`).innerText.toUpperCase();
@@ -36,7 +38,7 @@ function addWinCard() {
   }
   var elem = document.createElement('div');
   elem.innerHTML = `
-  <article class="white-box card top-card">
+  <article class="white-box card card${cardNum}">
         <div class="user-name-area">
           <div>
             <p class="user1 bold-text">${select('.name-1').innerText}</p>
@@ -60,7 +62,7 @@ function addWinCard() {
             <p><span class="bold-text">${getElapsedTime()}</span> MINUTES</p>
           </div>
           <div class="delete-icon">
-            <p><img src="delete.svg" target="delete button" class="delete-button"></p>  
+            <p><img src="delete.svg" target="delete button" class="card${cardNum}"></p>  
           </div>
         </div>
       </article>`
@@ -156,7 +158,7 @@ function initializeForm() {
 
 function removeCard(selectedCard) {
   if(event.target.tagName === 'IMG') { 
-    var deletedCard = select('.card');
+    var deletedCard = select(`.${event.target.classList.value}`);
     deletedCard.remove();
   }
 }
