@@ -360,6 +360,14 @@ input[type="number"]:focus, input[type="text"]:focus {
   .right-side {
     border-left: none;
   }
+
+  .card {
+    margin: .75% 2%;
+  }
+  
+  .user-name-area {
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 480px) {
