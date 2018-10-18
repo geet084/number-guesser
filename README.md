@@ -1,4 +1,4 @@
-# Number Guesser
+# Number Guesser 
 
 ## Synopsis
   Number Guesser is a game in which two players compete against each other to guess a random number. Once the correct number is guessed, the game increases in difficulty by increasing the range by 10 for both the minimum range and the maximum range.
