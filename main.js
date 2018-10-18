@@ -32,6 +32,7 @@ function addWinCard() {
     }
   }
   var elem = document.createElement('div');
+  // elem.classList.add('animated');
   elem.innerHTML = 
   `<article class="white-box card card${cardNum}">
     <div class="user-name-area">
@@ -69,6 +70,7 @@ function checkEmptyName(i) {
 function checkGuess(userGuess, player) {
   if (userGuess == winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "BOOM!";
+    select(`.user-${player + 1}-last-guess`).classList.add('pulse');
   } else if (userGuess > winningNumber) {
     select(`.guess-feedback-${player + 1}`).innerText = "that is too high";
   } else if (userGuess < winningNumber) {
@@ -167,6 +169,7 @@ function initializeForm() {
   setDefaultGameValues();
   resetDisplay();
   resetTheButtons();
+  removePulse();
 }
 
 function removeCard(selectedCard) {
@@ -174,6 +177,11 @@ function removeCard(selectedCard) {
     var deletedCard = select(`.${event.target.classList.value}`);
     deletedCard.remove();
   }
+}
+
+function removePulse() {
+  select(`.user-1-last-guess`).classList.remove('pulse');
+  select(`.user-2-last-guess`).classList.remove('pulse');
 }
 
 function resetDisplay() {
@@ -259,6 +267,7 @@ function updateValidGuess(errors, guesses, names) {
 }
 
 function validateGuess(userGuesses, userNames) {
+  removePulse();
   var errorCount = 0;
   errorCount = checkValidGuessEntered(errorCount, userGuesses);
   updateValidGuess(errorCount, userGuesses, userNames);
